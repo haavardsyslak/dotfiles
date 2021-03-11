@@ -1,0 +1,59 @@
+# Binary Files
+*.dll
+*.exe
+
+# Build Folders
+[Bb]in/
+[Bb]uild/
+[Dd]ist/
+[Gg]en/
+[Oo]ut/
+
+# Clion Files
+.idea/
+CMakeLists.txt
+cmake-build-debug/
+
+# Compressed Files
+*.7z
+*.gz
+*.rar
+*.tar
+*.zip
+
+# Log Files
+*.log
+[Ll]og/
+[Ll]ogs/
+
+# OSX Files
+.DS_Store
+
+# Pinit
+.pinitrc
+bin/
+obj/
+
+# Vim Files
+*~
+.netrwhist
+Session.vim
+Sessionx.vim
+[._]*.s[a-z][a-z]
+[._]*.sw[a-p]
+[._]*.un~
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+tags
+
+# Windows Thumbnail Database
+Thumbs.db
+
+# .envfile
+.env
+# Test file
+test.*
+__pycache__
+
+

@@ -1,0 +1,34 @@
+\documentclass[english]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{ulem}
+\usepackage{amsmath}
+\pagenumbering{arabic}
+\usepackage{mathtools}
+\usepackage{enumerate}
+
+\usepackage{graphicx}
+\graphicspath{{img/}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{<++>} % Right head
+\lhead{<++>} % Left head
+\rfoot{\thepage}
+\lfoot{\author}
+
+\begin{document}
+
+\title{<++>}
+\author{$AUTHOR$}
+\date{\today}
+
+\maketitle
+
+\section*{<++>}
+
+<++>
+
+\end{document}
