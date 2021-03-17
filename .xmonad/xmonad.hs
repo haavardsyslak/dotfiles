@@ -141,6 +141,9 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((altMask,            xK_space    ), spawn "dmenu_run")
 
+    -- launch DOOM EMACS
+    , ((modm,               xK_d        ), spawn "emacs")
+
     -- launch Firefox
     , ((modm .|. altMask,   xK_f        ), spawn "firefox")
 
@@ -158,7 +161,7 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. altMask,   xK_e    ), spawn "~/programering/scripts/dmenu/emoji.sh")
 
     -- Launch dolphin
-    , ((modm,               xK_d    ), spawn "dolphin")
+   -- , ((modm,               xK_d    ), spawn "dolphin")
 
     -- Launch range 
     , ((modm,               xK_r    ), spawn "st ranger")
