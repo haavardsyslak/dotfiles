@@ -5,9 +5,6 @@
 
 (defvar +org-capture-todo-file "agenda.org")
 
-
-
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Håvard Syslak"
@@ -39,6 +36,8 @@
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-comment-face :slant italic))
+  ;; '(flycheck-error nil :underline '(color: "#CC6666" :style nil)))
+
 
 ;
 ;(set-foreground-color "#282828")
@@ -120,6 +119,14 @@
   (kbd "j") 'peep-dired-next-file
   (kbd "k") 'peep-dired-prev-file)
 
+(map! :leader
+      :desc "Lsp describe thing at point"
+      "k k" #'lsp-describe-thing-at-point
+      :leader
+      :desc "Dash lookup"
+      "k d" #'+lookup:dash)
+
+
 ;; (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
 
 ;; Get file icons in dired
@@ -147,6 +154,42 @@
 ;; Enable PDF from DVI creation
 ;; (setq TeX-PDF-from-DVI "Dvips")
 
+(after! company-mode
+  (setq company-idle-delay 0.0))
+
 (after! lsp-mode
         (setq lsp-enable-symbol-highlighting nil)
-        (setq lsp-completion-enable-additional-text-edit nil))
+        (setq lsp-completion-enable-additional-text-edit nil)
+        ;;(setq lsp-pyls-disable-warnings t)
+        (setq lsp-pyls-plugins-jedi-signature-help-enabled nil)
+        (setq lsp-pyls-plugins-yapf-enabled t)
+        (setq lsp-pyls-plugins-autopep8-enabled nil)
+        (setq lsp-pyls-plugins-pycodestyle-enabled nil)
+        )
+(after! lsp-ui
+  (setq lsp-ui-doc-position 'bottom))
+
+
+;; DAP mode
+(map! :leader
+      :desc "Dap toggle breakpoint"
+      "q b" #'dap-breakpoint-toggle
+      :leader
+      :desc "Dap-start debugger"
+      "q s" #'dap-debug
+      :leader
+      :desc "Dap debug last"
+      "q q" #'dap-debug-last
+      :leader
+      :desc "Dap restart debugger"
+      "q r" #'dap-debug-restart)
+
+
+
+(use-package dap-mode
+  :commands dap-debug)
+
+(require 'dap-python)
+
+(after! python-mode
+  (dap-python-debugger 'debugpy))

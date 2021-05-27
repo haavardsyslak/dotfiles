@@ -41,8 +41,8 @@ Plug 'rafaqz/ranger.vim'				" Ranger vim
 
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'} " R
 
-Plug 'junegunn/fzf', { 'dir': '~/syslak/fzf', 'do': './install --all' } "fzf
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/syslak/fzf', 'do': './install --all' } "fzf
+"Plug 'junegunn/fzf.vim'
 
 call plug#end()                			" required! Add plugins before this line 
 
@@ -339,7 +339,7 @@ noremap <Right> <Nop>
 " -----[ Vim IDE stuff from this point on]-----
 
 " Jump to jump points <++>
-inoremap <A-f> <Esc>/<++><enter>c4l
+inoremap <A-f> <Esc>/<++><enter>"_c4l
 
 "-----[ Vimwiki ]-----
 autocmd Filetype vimwiki inoremap ;f \frac{}{<++>} <++><Esc>F\f{a
@@ -367,6 +367,9 @@ autocmd Filetype tex inoremap ;tc \begin{center}<CR>\begin{circuitikz}[american,
 " -----[ GOLANG ]-----
 autocmd Filetype go inoremap ;p fmt.Println()<Esc>i
 
+" -----[ PYTHON ]-----
+autocmd Filetype python inoremap ;mi if __name__ == "__main__":<CR>
+autocmd Filetype python inoremap ;mf if __name__ == "__main__":<CR>main()<CR>
 
 " -----[ Terminal ]-----
 let g:term_buf = 0
@@ -380,7 +383,7 @@ function! TermToggle(height)
         try
             exec "buffer " . g:term_buf
         catch
-            call termopen("/usr/bin/fish", {"detach": 0})
+            call termopen("/usr/bin/zsh", {"detach": 0})
             let g:term_buf = bufnr("")
             set nonumber
             set norelativenumber

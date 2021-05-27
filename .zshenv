@@ -1,11 +1,13 @@
-source "$HOME/.cargo/env"
+#source "$HOME/.cargo/env"
 
 export EDITOR="nvim"
 export TERMINAL="st"
 export VISUAL="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 export GOPATH="$HOME/.local/go"
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+#export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin"
+
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
