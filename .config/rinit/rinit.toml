@@ -1,0 +1,14 @@
+[variables]
+author = "Håvard Syslak"
+
+[c]
+gitignore = true
+makefile = true
+
+[go]
+gitignore = true
+makefile = true
+
+[tex]
+gitignore = true
+makefile = false
