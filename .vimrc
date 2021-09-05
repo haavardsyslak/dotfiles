@@ -15,8 +15,6 @@ call plug#begin()
 "-------[ Plugins ]-------
 Plug 'Valloric/YouCompleteMe'           "Autocomplete 
 
-"Plug 'zxqfl/tabnine-vim'               " Autocomplete 
-
 Plug 'nvie/vim-flake8'                  "Python syntax checker
 
 Plug 'altercation/vim-colors-solarized' "Some color stuff.  
@@ -362,6 +360,7 @@ autocmd Filetype tex inoremap ;s \sum_{}^{<++>} <++><Esc>F_la
 autocmd Filetype tex inoremap ;eq \begin{equation}<CR><CR>\end{equation}<CR><++><Esc>kki
 autocmd Filetype tex inoremap ;al \begin{aligned}<CR><CR>\end{aligned}<Esc>ki
 autocmd Filetype tex inoremap ;gO \Omega
+autocmd Filetype tex inoremap ;go \omega
 autocmd Filetype tex inoremap ;tc \begin{center}<CR>\begin{circuitikz}[american, scale=1.3]<CR>\draw<CR>;<CR>\end{circuitikz}<CR>\end{center}<Esc>kkO
 
 " -----[ GOLANG ]-----

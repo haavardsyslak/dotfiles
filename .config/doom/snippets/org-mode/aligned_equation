@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: aligned_equaton
+# uuid:
+# key: ,ea
+# condition: t
+# --
+\begin{equation}
+    \begin{aligned}
+    ${1:}
+    \end{aligned}
+\end{equation}
+${2:*}
