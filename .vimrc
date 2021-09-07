@@ -37,7 +37,7 @@ Plug 'vimwiki/vimwiki'                  "Wimviki - Notes
 
 Plug 'rafaqz/ranger.vim'				" Ranger vim
 
-Plug 'jalvesaq/Nvim-R', {'branch': 'stable'} " R
+" Plug 'jalvesaq/Nvim-R', {'branch': 'stable'} " R
 
 "Plug 'junegunn/fzf', { 'dir': '~/syslak/fzf', 'do': './install --all' } "fzf
 "Plug 'junegunn/fzf.vim'
