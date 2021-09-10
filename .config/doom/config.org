@@ -1,11 +1,60 @@
+#+TITLE: Emacs config
+#+AUTHOR: Håvard Syslak
+#+PROPERTY: header-args+ :tangle config.el
+
+* Configuring doom
+Here are some additional functions/macros that could help you configure Doom:
+
+- `load!' for loading external *.el files relative to this one
+- `use-package!' for configuring packages
+- `after!' for running code after a package has loaded
+- `add-load-path!' for adding directories to the `load-path', relative to
+  this file. Emacs searches the `load-path' when you load packages with
+  `require' or `use-package'.
+- `map!' for binding new keys
+
+
+To get information about any of these functions/macros, move the cursor over
+the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+This will open documentation for it, including demos of how they are used.
+
+You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+they are implemented.
+* Setup
+some functionality uses this to identify you, e.g. gpg configuration, email
+clients, file templates and snippets.
+
+#+begin_src elisp
 (setq user-full-name "håvard syslak"
       user-mail-address "haavard.syslak@gmail.com")
 (set-frame-parameter (selected-frame) 'alpha '(98 . 94))
 (add-to-list 'default-frame-alist '(alpha . (98 . 94)))
+#+end_src
 
+* Fonts and themes
+** Font
+Doom exposes five (optional) variables for controlling fonts in Doom. Here
+are the three important ones:
+
++ `doom-font'
++ `doom-variable-pitch-font'
++ `doom-big-font' -- used for `doom-big-font-mode'; use this for
+  presentations or streaming.
+
+They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+font string. You generally only need these two:
+(setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+#+begin_src emacs-lisp
 (setq doom-font (font-spec :family "Liberation Mono" :size 14))
       ;(doom-variable-pitch-font (font-spec :family "monospace" :size 13)))
+#+end_src
 
+** Theme
+There are two ways to load a theme. Both assume the theme is installed and
+available. You can either set `doom-theme' or manually load a theme with the
+`load-theme' function. This is the default:
+#+begin_src emacs-lisp
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -17,6 +66,12 @@
   '(font-lock-comment-face :slant italic)
   '(font-lock-comment-face :slant italic))
 
+#+end_src
+
+* Org mode
+If you use `org' and don't want your org files in the default location below,
+change `org-directory'. It must be set before org loads!
+#+begin_src emacs-lisp
 (setq org-directory "~/uisfiles/org/")
 
 (after! org
@@ -41,11 +96,18 @@
 )
 (defvar +org-capture-todo-file "agenda.org")
 (setq org-roam-directory "~/uisfiles/org/roam")
+#+end_src
 
+* Editor and shell
+#+begin_src emacs-lisp
 (setq display-line-numbers-type `relative)
 
 (setq shell-file-name "/usr/bin/zsh")
+#+end_src
 
+** LSP mode
+
+#+begin_src emacs-lisp
 (after! lsp-mode
         (setq lsp-enable-symbol-highlighting nil)
         (setq lsp-completion-enable-additional-text-edit nil)
@@ -57,17 +119,29 @@
         )
 (after! lsp-ui
   (setq lsp-ui-doc-position 'bottom))
+#+end_src
 
+
+Some keybind for looking up docummentation
+#+begin_src emacs-lisp
 (map! :leader
       :desc "Lsp describe thing at point"
       "k k" #'lsp-describe-thing-at-point
       :leader
       :desc "Dash lookup"
       "k d" #'+lookup:dash)
+#+end_src
 
+** Company mode
+
+#+begin_src emacs-lisp
 (after! company-mode
   (setq company-idle-delay 0.0))
+#+end_src
 
+** Dap mode
+
+#+begin_src emacs-lisp
 (map! :leader
       :desc "Dap toggle breakpoint"
       "q b" #'dap-breakpoint-toggle
@@ -88,7 +162,10 @@
 
 (after! python-mode
   (dap-python-debugger 'debugpy))
+#+end_src
 
+* Dired
+#+begin_src emacs-lisp
 (map! :leader
       :desc "Dired"
       "d d" #'dired
@@ -120,7 +197,13 @@
                               ("png" . "sxiv")
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
+#+end_src
 
+* Snippets
+
+#+begin_src emacs-lisp
 (setq yas-triggers-in-field t)
 (after! snippet
   (setq require-final-newline nil))
+#+end_src
+

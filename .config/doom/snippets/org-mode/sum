@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:sum
+# key:,s
+# --
+\sum_{${1:lower}}^{${2:upper}} ${3:*

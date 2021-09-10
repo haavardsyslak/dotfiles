@@ -1,12 +1,12 @@
 # -*- mode: snippet -*-
-# name: aligned_equaton
-# uuid:
-# key: ,ea
-# condition: t
+# name: latex_src_aligned_equation
+# key: lea
 # --
+#+begin_src latex
 \begin{equation}
     \begin{aligned}
-    ${1:}
+        ${1:}
     \end{aligned}
 \end{equation}
+#+end_src
 ${2:*
