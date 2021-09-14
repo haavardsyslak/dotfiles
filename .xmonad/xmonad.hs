@@ -434,7 +434,6 @@ myManageHook = manageSpawn
 -- Prevent focusing other tabs when working with floating windows in tabbed layout.
 myEventHook :: Event -> X All
 myEventHook = refocusLastWhen myPred
-
     where
         myPred = refocusingIsActive <||> isFloat
 
@@ -481,13 +480,13 @@ main = do
         , keys = myKeys fullscreenRef 
         , startupHook = myStartupHook
         , manageHook =  myManageHook 
-        , layoutHook = myLayout
-        , handleEventHook = ewmhDesktopsEventHook <+>toggleableFullscreen fullscreenRef <+> handleEventHook def <+> docksEventHook <+> myEventHook
+        , layoutHook = refocusLastLayoutHook $ myLayout
+        , handleEventHook = ewmhDesktopsEventHook <+> myEventHook <+> toggleableFullscreen fullscreenRef <+> handleEventHook def <+> docksEventHook 
         , workspaces = myWorkspaces
         --, logHook = dynamicLogWithPP myPP {
           --                                ppOutput = hPutStrLn xmproc
             --                              }
-        , logHook = workspaceHistoryHook <+> myLogHook <+>  dynamicLog --dynamicLogWithPP xmobarPP { 
+        , logHook = refocusLastLogHook <+> workspaceHistoryHook <+> myLogHook <+>  dynamicLog --dynamicLogWithPP xmobarPP { 
             -- Change from dynamicLog to dynamicLogWithPP and uncomment inside {} to  bring back xmobar
 --              ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
             --, ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"  -- Current workspace in xmobar
