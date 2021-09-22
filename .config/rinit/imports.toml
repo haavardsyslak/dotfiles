@@ -1,13 +1,15 @@
 # Imports
 
 [common]
-sign = """/*	Project: $project$
+hs_sign = """$B
+    Project: $project$
          __ 
-     |_|(_   
+     |_|(_
      | |__)
     Author: $author$
-    Date: $DATE$   
-*/"""
+    Date: $DATE$
+$E
+"""
 
 [gitignore]
 
@@ -79,4 +81,29 @@ flow_chart = '''%% tikz
 \tikzstyle{block} = [rectangle, minimum width=3cm, minimum height=0.8cm, text centered, draw=black,fill=black!20]
 \tikzstyle{if} = [diamond, minimum width=5cm, text centered, draw=black, aspect=2,fill=green!20]
 \tikzstyle{nan} = [rectangle, draw=white]
-\tikzstyle{arrow} = [thick,->,>=stealth]'''
+\tikzstyle{arrow} = [thick,->,>=stealth]
+'''
+
+[c]
+HEADC = "#include<$FILENAME$>"
+
+[org]
+
+basic = """#+TITLE: $FILENAME$
+#+AUTHOR: $author$
+"""
+latex_options = ''':PROPERTIES:
+#+LANGUAGE: nynorsk
+#+OPTIONS: toc:nil num:nil
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [10pt,a4paper]
+#+LATEX_HEADDER: \usepackage{float}
+#+LATEX_HEADDER: \usepackage[nynorsk]{babel}
+:END:
+'''
+
+toc = """* Table of contents
+:TOC:   :include all :ignore this
+:END:
+:CONTENTS:
+"""

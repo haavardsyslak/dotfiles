@@ -3,7 +3,7 @@
 (set-frame-parameter (selected-frame) 'alpha '(98 . 94))
 (add-to-list 'default-frame-alist '(alpha . (98 . 94)))
 
-(setq doom-font (font-spec :family "Liberation Mono" :size 14))
+(setq doom-font (font-spec :family "Liberation Mono" :size 13))
       ;(doom-variable-pitch-font (font-spec :family "monospace" :size 13)))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -42,18 +42,22 @@
 (defvar +org-capture-todo-file "agenda.org")
 (setq org-roam-directory "~/uisfiles/org/roam")
 
-(setq display-line-numbers-type `relative)
-
-(setq shell-file-name "/usr/bin/zsh")
+(setq display-line-numbers-type `relative
+      shell-file-name "/usr/bin/zsh")
 
 (after! lsp-mode
         (setq lsp-enable-symbol-highlighting nil)
         (setq lsp-completion-enable-additional-text-edit nil)
         ;;(setq lsp-pyls-disable-warnings t)
-        (setq lsp-pyls-plugins-jedi-signature-help-enabled nil)
-        (setq lsp-pyls-plugins-yapf-enabled t)
-        (setq lsp-pyls-plugins-autopep8-enabled nil)
-        (setq lsp-pyls-plugins-pycodestyle-enabled nil)
+        (setq lsp-pylsp-plugins-jedi-signature-help-enabled nil)
+        (setq lsp-pylsp-plugins-yapf-enabled t)
+        (setq lsp-pylsp-plugins-autopep8-enabled nil)
+        (setq lsp-pylsp-plugins-pycodestyle-enabled nil)
+        (setq lsp-pylsp-plugins-pycodestyle-max-line-length 150)
+        (setq lsp-pylsp-plugins-flake8-max-line-length 150)
+        (setq lsp-pylsp-plugins-docstyle-max-line-length 150)
+        (setq lsp-signature-render-documentation nil)
+        (setq lsp-pylsp-plugins-pydocstyle-enabled nil)
         )
 (after! lsp-ui
   (setq lsp-ui-doc-position 'bottom))
@@ -85,9 +89,37 @@
   :commands dap-debug)
 
 (require 'dap-python)
+(require 'dap-cpptools)
+(require 'dap-lldb)
+(require 'dap-gdb-lldb)
 
 (after! python-mode
   (dap-python-debugger 'debugpy))
+
+  (dap-register-debug-template
+   "Rust::LLDB Run Configuration"
+   (list :type "lldb"
+         :request "launch"
+         :name "LLDB::Run"
+	 :gdbpath "rust-lldb"
+         :target nil
+         :cwd nil))
+
+(dap-register-debug-template "Rust::GDB Run Configuration"
+                             (list :type "gdb"
+                                   :request "launch"
+                                   :name "GDB::Run"
+                           :gdbpath "rust-gdb"
+                                   :target nil
+                                   :cwd nil))
+;(dap-register-debug-template
+   ;"rinit::Run"
+   ;(list :type "gdb"
+         ;:request "launch"
+         ;:name "GDB::Run"
+         ;:gdbpath "rust-gdb"
+         ;:target "${workspaceFolder}/target/debug/rinit"
+         ;:cwd "${worksapceFolder}"))
 
 (map! :leader
       :desc "Dired"
@@ -122,5 +154,3 @@
                               ("mp4" . "mpv")))
 
 (setq yas-triggers-in-field t)
-(after! snippet
-  (setq require-final-newline nil))

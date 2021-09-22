@@ -1,0 +1,10 @@
+!import hs_sign
+
+#include <stdio.h>
+
+!import HEADC
+
+
+int main(void) {
+
+}

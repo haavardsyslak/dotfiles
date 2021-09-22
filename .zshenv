@@ -19,3 +19,4 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 # Disable files
 
 export LESSHISTFILE=-
+. "$HOME/.cargo/env"

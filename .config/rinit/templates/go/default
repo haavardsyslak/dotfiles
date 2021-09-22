@@ -1,6 +1,6 @@
 package $PACKAGE$
 
-!import sign
+!import hs_sign
 
 import (
 	"<++>"

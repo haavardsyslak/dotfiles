@@ -15,3 +15,4 @@ export VISUAL="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"

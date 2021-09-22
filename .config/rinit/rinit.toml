@@ -1,5 +1,6 @@
 [variables]
 author = "Håvard Syslak"
+email = "haavard.syslak@gmail.com"
 
 [c]
 gitignore = true
@@ -10,5 +11,10 @@ gitignore = true
 makefile = true
 
 [tex]
-gitignore = true
+gitignore = false
 makefile = false
+
+[org]
+gitignore = false
+makefile = false
+overridable = false
