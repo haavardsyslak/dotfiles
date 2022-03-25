@@ -42,6 +42,9 @@
 (defvar +org-capture-todo-file "agenda.org")
 (setq org-roam-directory "~/uisfiles/org/roam")
 
+(setq org-latex-pdf-process '("latexmk -shell-escape -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"))
+(setq org-latex-listings 'minted)
+
 (setq display-line-numbers-type `relative
       shell-file-name "/usr/bin/zsh")
 
@@ -60,7 +63,8 @@
         (setq lsp-pylsp-plugins-pydocstyle-enabled nil)
         )
 (after! lsp-ui
-  (setq lsp-ui-doc-position 'bottom))
+  (setq lsp-ui-doc-position 'bottom)
+  (setq lsp-lens-enable nil))
 
 (map! :leader
       :desc "Lsp describe thing at point"
@@ -120,6 +124,10 @@
          ;:gdbpath "rust-gdb"
          ;:target "${workspaceFolder}/target/debug/rinit"
          ;:cwd "${worksapceFolder}"))
+
+(after! cc-mode
+  (define-key c-mode-base-map (kbd "<tab>") 'tab-to-tab-stop)
+  (define-key c-mode-base-map [tab] 'tab-to-tab-stop))
 
 (map! :leader
       :desc "Dired"

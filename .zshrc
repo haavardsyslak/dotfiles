@@ -6,6 +6,7 @@
 # Alias
 alias vim="nvim"
 alias py="python3"
+alias jl="julia"
 alias gaa="git add --all"
 alias gc="git commit"
 alias gp="git push"
@@ -15,7 +16,9 @@ alias config="git --git-dir=$HOME/syslak/dotfiles --work-tree=$HOME"
 alias ls="ls --color=auto"
 alias dls="ranger $HOME/extra/downloads"
 alias l="exa"
+alias vimrc="vim $HOME/.config/nvim/init.vim"
 #alias mat="wid=$(xdo id); xdo hide; matlab; xdo show $wid"
+ 
 
 function git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'

@@ -85,21 +85,19 @@ flow_chart = '''%% tikz
 '''
 
 [c]
-HEADC = "#include<$FILENAME$>"
+HEADC = '#include "$HEADDER_INC$.h"'
 
 [org]
-
 basic = """#+TITLE: $FILENAME$
 #+AUTHOR: $author$
 """
-latex_options = ''':PROPERTIES:
+latex_options = '''
 #+LANGUAGE: nynorsk
 #+OPTIONS: toc:nil num:nil
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS: [10pt,a4paper]
-#+LATEX_HEADDER: \usepackage{float}
-#+LATEX_HEADDER: \usepackage[nynorsk]{babel}
-:END:
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage[nynorsk]{babel}
 '''
 
 toc = """* Table of contents
@@ -107,3 +105,18 @@ toc = """* Table of contents
 :END:
 :CONTENTS:
 """
+
+minted_latex = '''
+#+LATEX_HEADER: \usepackage{minted}
+'''
+
+minted_latex_export = '''
+#+BEGIN_EXPORT latex
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\setminted[matlab]{
+  bgcolor=bg,
+  breaklines=true,
+  mathescape,
+  fontsize=\footnotesize}
+#+END_EXPORT
+'''

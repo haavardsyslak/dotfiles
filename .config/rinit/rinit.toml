@@ -18,3 +18,9 @@ makefile = false
 gitignore = false
 makefile = false
 overridable = false
+
+[h] # Headder files
+gitignore = false
+makefile = false
+overridable = false # never move git/make files when creating single headder files
+

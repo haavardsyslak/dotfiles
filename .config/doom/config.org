@@ -101,6 +101,11 @@ change `org-directory'. It must be set before org loads!
 (setq org-roam-directory "~/uisfiles/org/roam")
 #+end_src
 
+** Org latex export
+#+begin_src elisp
+(setq org-latex-pdf-process '("latexmk -shell-escape -f -pdf -%latex -interaction=nonstopmode -output-directory=%o %f"))
+(setq org-latex-listings 'minted)
+#+end_src
 * Editor and shell
 #+begin_src emacs-lisp
 (setq display-line-numbers-type `relative
@@ -125,7 +130,8 @@ change `org-directory'. It must be set before org loads!
         (setq lsp-pylsp-plugins-pydocstyle-enabled nil)
         )
 (after! lsp-ui
-  (setq lsp-ui-doc-position 'bottom))
+  (setq lsp-ui-doc-position 'bottom)
+  (setq lsp-lens-enable nil))
 #+end_src
 
 
@@ -197,6 +203,14 @@ Some keybind for looking up docummentation
          ;:gdbpath "rust-gdb"
          ;:target "${workspaceFolder}/target/debug/rinit"
          ;:cwd "${worksapceFolder}"))
+#+end_src
+
+** C-mode
+
+#+begin_src emacs-lisp
+(after! cc-mode
+  (define-key c-mode-base-map (kbd "<tab>") 'tab-to-tab-stop)
+  (define-key c-mode-base-map [tab] 'tab-to-tab-stop))
 #+end_src
 
 * Dired

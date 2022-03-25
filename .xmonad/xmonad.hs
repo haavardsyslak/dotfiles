@@ -3,60 +3,59 @@
 import XMonad.Util.SpawnOnce
 import XMonad.Actions.SpawnOn
 import XMonad.Actions.NoBorders
--- 1 import XMonad.Util.Run
+import XMonad.Util.Run
 import XMonad hiding ((|||))
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
--- import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, PP(..))
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, PP(..))
 import XMonad.Hooks.ManageDocks
--- import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig--(additionalKeys, additionalKeysP, additionalMouseBindings)
--- import System.IO
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys, additionalKeysP, additionalMouseBindings)
+import System.IO
 import System.Exit
 
 import XMonad.Actions.GroupNavigation
 import XMonad.Layout.Tabbed
 import XMonad.Hooks.InsertPosition
--- import XMonad.Layout.SimpleDecoration (shrinkText)
--- import XMonad.Util.WorkspaceCompare
+import XMonad.Layout.SimpleDecoration (shrinkText)
+import XMonad.Util.WorkspaceCompare
 import XMonad.Hooks.ManageHelpers
 
 -- Order screens by physical location
--- import XMonad.Actions.PhysicalScreens
--- import Data.Default
+import XMonad.Actions.PhysicalScreens
+import Data.Default
 -- For getSortByXineramaPhysicalRule
 import XMonad.Layout.LayoutCombinators
--- import XMonad hiding ( (|||) )
+import XMonad hiding ( (|||) )
 
 -- smartBorders and noBorders
 import XMonad.Layout.NoBorders
 
 -- spacing between tiles
 import XMonad.Layout.Spacing
--- 1 import XMonad.Layout.Groups.Examples
+import XMonad.Layout.Groups.Examples
 
--- UNCOMMENT when reenabeling the bar
--- !!BAR!!
--- import XMonad.Hooks.DynamicBars
+import XMonad.Hooks.DynamicBars
 
 --- Layouts (Most are not in use)
 import XMonad.Layout.ResizableTile
---import XMonad.Layout.TwoPane
---import XMonad.Layout.BinarySpacePartition
---import XMonad.Layout.Dwindle
---import XMonad.Layout.ComboP
---import XMonad.Layout.SubLayouts
---import XMonad.Layout.WindowNavigation
---import XMonad.Layout.WindowNavigation
+import XMonad.Layout.TwoPane
+import XMonad.Layout.BinarySpacePartition
+import XMonad.Layout.Dwindle
+import XMonad.Layout.ComboP
+import XMonad.Layout.SubLayouts
+import XMonad.Layout.WindowNavigation
+import XMonad.Layout.WindowNavigation
 --import XMonad.Layout.BoringWindows
 import XMonad.Layout.LayoutModifier
 import XMonad.Hooks.WorkspaceHistory
 import XMonad.Layout.TrackFloating
---import XMonad.Layout.Simplest
--- 1 import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.Simplest
+import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.Renamed
 import XMonad.Layout.Renamed
 import Data.IORef
 
@@ -70,20 +69,18 @@ import XMonad.Hooks.SetWMName
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal :: [Char]
-myTerminal = "st"
-
+myTerminal = "st -e fish"
+myBar = "xmobar"
 -- Whether focus follows the mouse pointer.
--- myFocusFollowsMouse :: Bool
--- myFocusFollowsMouse = True
+myFocusFollowsMouse :: Bool
+myFocusFollowsMouse = True
 
 -- Whether clicking on a window to focus also passes the click to the window
--- myClickJustFocuses :: Bool
--- myClickJustFocuses = False
+myClickJustFocuses :: Bool
+myClickJustFocuses = False 
 
 
 -- Width of the window border in pixels.
-myBorderWidth :: Dimension
 myBorderWidth   = 2
 
 
@@ -92,11 +89,8 @@ myBorderWidth   = 2
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-
--- myModMask :: KeyMask
--- myModMask = mod4Mask
-altMask :: KeyMask
-altMask = mod1Mask
+myModMask       = mod4Mask
+altMask         = mod1Mask 
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -107,46 +101,35 @@ altMask = mod1Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-  -- !!BAR!!
--- UNCOMMENT to get clickable workspaces
--- xmobarEscape :: String -> String
--- xmobarEscape = concatMap doubleLts
---   where
---         doubleLts '<' = "<<"
---         doubleLts x   = [x]
---myWorkspaces :: [String]
---myWorkspaces = clickable . map xmobarEscape
-               -- $ [" \59333 ", " \62057 ", " \58875 ", " \61441 ", " \62229 ", " 6 "," 7 "," \61613 "," \61944 "]
-  -- where
-        --clickable l = [ "<action=xdotool key super+" ++ show n ++ ">" ++ ws ++ "</action>" |
-                      --(i,ws) <- zip [1..9] l,
-                      --let n = i ]
+xmobarEscape :: String -> String
+xmobarEscape = concatMap doubleLts
+  where
+        doubleLts '<' = "<<"
+        doubleLts x   = [x]
 
 --myWorkspaces    = [" 1 "," 2 "," 3 "," 4 "," 5 "," 6 "," 7 "," 8 "," 9 "]
-myWorkspaces :: [[Char]]
-myWorkspaces = [" \59333 ", " \62057 ", " \58875 ", " \61441 ", " \62229 ", " 6 "," 7 "," \61613 "," \61944 "]
-
+myWorkspaces :: [String]
+myWorkspaces = clickable . map xmobarEscape
+               $ [" \59333 ", " \62057 ", " \58875 ", " \61441 ", " \62229 ", " 6 "," 7 "," \61613 "," \61944 "]
+  where
+        clickable l = [ "<action=xdotool key super+" ++ show n ++ ">" ++ ws ++ "</action>" |
+                      (i,ws) <- zip [1..9] l,
+                      let n = i ]
 
 
 -- Window count
-  -- !!BAR!!
--- windowCount :: X (Maybe String)
--- windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 -- Border colors for unfocused and focused windows, respectively.
 --
---myNormalBorderColor  = "#dddddd"
-myNormalBorderColor :: [Char]
-myNormalBorderColor  = "#005577"
-myFocusedBorderColor :: [Char]
+myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 
       --  , normalBorderColor  = "#2f3d44"
       --  , focusedBorderColor = "#1ABC9C"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
-myKeys :: IORef Bool
-  -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     
     ------[ Launch Meister ]-----
@@ -155,9 +138,6 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch dmenu
     , ((altMask,            xK_space    ), spawn "dmenu_run")
-
-    -- launch DOOM EMACS
-    , ((modm,               xK_d        ), spawn "emacs")
 
     -- launch Firefox
     , ((modm .|. altMask,   xK_f        ), spawn "firefox")
@@ -175,20 +155,14 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- emoji dmenu prompt
     , ((modm .|. altMask,   xK_e    ), spawn "~/programering/scripts/dmenu/emoji.sh")
 
-    , ((altMask,            xK_i    ),  spawn "~/programering/scripts/square.sh")
-    , ((altMask,            xK_o    ),  spawn "~/programering/scripts/curly.sh")
-
     -- Launch dolphin
-   -- , ((modm,               xK_d    ), spawn "dolphin")
+    , ((modm,               xK_d    ), spawn "dolphin")
 
     -- Launch range 
     , ((modm,               xK_r    ), spawn "st ranger")
 
     --Launch Pulsemixer
-    , ((modm .|. altMask,   xK_p    ), spawn "st -n pulsemixer pulsemixer")
-    
-    --Launch Calcurse
-    , ((modm .|. shiftMask,   xK_c    ), spawn "st -n calcurse calcurse")
+    , ((modm .|. altMask,   xK_p    ), spawn "st pulsemixer")
 
     -- Launch boom
     , ((modm .|. altMask,   xK_b    ), spawn "$HOME/programering/scripts/boom.py")
@@ -311,29 +285,26 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
--- myMouseBindings :: XConfig l
---   -> M.Map (KeyMask, Button) (Window -> X ())
--- myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
+myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
---     -- mod-button1, Set the window to floating mode and move by dragging
---     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
---                                        >> windows W.shiftMaster))
+    -- mod-button1, Set the window to floating mode and move by dragging
+    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
+                                       >> windows W.shiftMaster))
 
---     -- mod-button2, Raise the window to the top of the stack
---     , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
+    -- mod-button2, Raise the window to the top of the stack
+    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
 
---     -- mod-button3, Set the window to floating mode and resize by dragging
---     , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
---                                        >> windows W.shiftMaster))
+    -- mod-button3, Set the window to floating mode and resize by dragging
+    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
+                                       >> windows W.shiftMaster))
 
---     -- you may also bind events to the mouse scroll wheel (button4 and button5)
---     ]
+    -- you may also bind events to the mouse scroll wheel (button4 and button5)
+    ]
 
 ------------------------------------------------------------------------
 -- Layouts:
 
 -- Tab layout config
-myTabConfig :: Theme
 myTabConfig = def {  activeColor = "#46d9ff"
                     --activeColor = "#556064"
                   , inactiveColor = "#2F3D44"
@@ -349,11 +320,18 @@ myTabConfig = def {  activeColor = "#46d9ff"
                   }
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
-mySpacing i = spacingRaw False (Border 0 0 0 0) True (Border i i i i) True
+mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
--- mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
--- mySpacing' i = spacingRaw True (Border 0 0 0 0) True (Border 0 0 0 0) True
+mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
+mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
+
+    -- spacing 3 $
+    -- addTabs shrinkText myTabConfig $  subLayout [0] (Simplest) $
+
+--tiledLayout = renamed [Replace "LayoutName"]
+--      $ spacing 3
+--      $ ResizableTall 1 (3/100) (1/2) []
 sjark = renamed [Replace "Tabs"] $
          trackFloating (tabbed shrinkText myTabConfig)
 
@@ -363,7 +341,7 @@ myLayout =  avoidStruts $ smartBorders $
      -- ||| Mirror tiled
   -- ||| noBorders Full
  -- ||| twopane
---  ||| Mirror twopane
+ -- ||| Mirror twopane
  -- ||| emptyBSP
  -- ||| Spiral L XMonad.Layout.Dwindle.CW (3/2) (11/10) -- L means the non-main windows are put to the left.
 
@@ -382,7 +360,6 @@ myLayout =  avoidStruts $ smartBorders $
 ------------------------------------------------------------------------
 -- Window rules:
 
--- Toglablow EwmhDesktops fullscreen event hook
 toggleableFullscreen :: IORef Bool -> Event -> X All
 toggleableFullscreen ref evt =
     io (readIORef ref) >>= \isOn ->
@@ -395,7 +372,7 @@ toggleableFullscreen ref evt =
 -- a new window. You can use this to, for example, always float a
 -- particular program, or have a client always appear on a particular
 -- workspace.
-
+--
 -- To find the property name associated with a program, use
 -- > xprop | grep WM_CLASS
 -- and click on the client you're interested in.
@@ -404,7 +381,6 @@ toggleableFullscreen ref evt =
 -- 'className' and 'resource' are used below.
 -- IDK
 -- insertPosition Below Newer <+> manageSpawn <+>
-myManageHook :: ManageHook
 myManageHook = manageSpawn
     <+> composeOne
     [  isFullscreen                  -?> doFullFloat
@@ -412,12 +388,8 @@ myManageHook = manageSpawn
     ,  title =?   "Save As"         -?> (insertPosition Above Newer <+> doFloat)
     ,  title =?   "Save File"       -?> (insertPosition Above Newer <+> doFloat)
     ,  appName =? "spectacle"       -?> (insertPosition Above Newer <+> doFloat)
-    ,  appName =? "pulsemixer"      -?> doRectFloat $ W.RationalRect 0.25 0.25 0.5 0.5 
-    ,  appName =? "calcurse"        -?> doRectFloat $ W.RationalRect 0.125 0.125 0.75 0.75 
-    --,  appName =? "pulsemixer"      -?> (insertPosition Above Newer <+> doCenterFloat)
     ,  className =? "Gimp"          -?> doFloat
     ,  className =? "mpv"           -?> doFloat
-    ,  className =? "tk"           -?> doFloat
     , return True                   -?> insertPosition Below Newer
     ]
     
@@ -432,7 +404,6 @@ myManageHook = manageSpawn
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 
 -- Prevent focusing other tabs when working with floating windows in tabbed layout.
-myEventHook :: Event -> X All
 myEventHook = refocusLastWhen myPred
     where
         myPred = refocusingIsActive <||> isFloat
@@ -443,7 +414,6 @@ myEventHook = refocusLastWhen myPred
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook :: X ()
 myLogHook = return ()
 
 ------------------------------------------------------------------------
@@ -454,13 +424,12 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook :: X ()
 myStartupHook = do
-        --spawnOnce "nitrogen --restore &"
-        --spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence -b"
+        spawnOnce "nitrogen --restore &"
+        spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence -b"
         --spawnOnce "/home/syslak/programering/scripts/setBrightness.sh 130"
         --spawnOnce "setxkbmap -option caps:super"
-        spawnOnce "xset r rate 300 50"
+        --spawnOnce "xset r rate 300 50"
         spawnOnce "ckb-next &"
         spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         spawnOnce "/home/syslak/programering/scripts/remap.sh &"
@@ -468,9 +437,8 @@ myStartupHook = do
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
--- Run xmonad with the settings you specify. 
+-- Run xmonad with the settings you specify. No need to modify this.
 --
-main :: IO()
 main = do
     fullscreenRef <- newIORef True
     --xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrcDesktop" 
@@ -480,13 +448,13 @@ main = do
         , keys = myKeys fullscreenRef 
         , startupHook = myStartupHook
         , manageHook =  myManageHook 
-        , layoutHook = refocusLastLayoutHook $ myLayout
-        , handleEventHook = ewmhDesktopsEventHook <+> myEventHook <+> toggleableFullscreen fullscreenRef <+> handleEventHook def <+> docksEventHook 
+        , layoutHook = myLayout
+        , handleEventHook = toggleableFullscreen fullscreenRef <+> handleEventHook def <+> docksEventHook 
         , workspaces = myWorkspaces
         --, logHook = dynamicLogWithPP myPP {
           --                                ppOutput = hPutStrLn xmproc
             --                              }
-        , logHook = refocusLastLogHook <+> workspaceHistoryHook <+> myLogHook <+>  dynamicLog --dynamicLogWithPP xmobarPP { 
+        , logHook = workspaceHistoryHook <+> myLogHook <+>  dynamicLog --dynamicLogWithPP xmobarPP { 
             -- Change from dynamicLog to dynamicLogWithPP and uncomment inside {} to  bring back xmobar
 --              ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
             --, ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"  -- Current workspace in xmobar
@@ -519,6 +487,12 @@ main = do
         , ("<XF86AudioMute>", spawn "amixer -D pulse set Master 1+ toggle")
 
         ]
+-- A structure containing your configuration settings, overriding
+-- fields in the default config. Any you don't override, will
+-- use the defaults defined in xmonad/XMonad/Config.hs
+--
+-- No need to modify this.
+--
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String

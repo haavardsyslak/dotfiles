@@ -34,6 +34,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HDRS)
 
 clean: 
 	rm -f $(OBJDIR)/*.o
-	
+
 all: clean $(TARGET)
 
+run: $(TARGET)
+	./$(TARGET)

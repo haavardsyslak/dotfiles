@@ -1,0 +1,6 @@
+!import hs_sign
+
+#ifndef $HEADDER_DEF$_H
+#define $HEADDER_DEF$_H
+
+#endif

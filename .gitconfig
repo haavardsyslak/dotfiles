@@ -1,8 +1,0 @@
-[user]
-	name = Håvard Syslak
-	email = haavard.syslak@gmail.com
-	username = HSYSL
-
-[core]
-    editor = "nvim"
-

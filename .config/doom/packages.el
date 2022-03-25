@@ -52,3 +52,5 @@
 (package! evil-tutor)
 (package! org-bullets)
 (package! dap-mode)
+(package! jupyter)
+(package! simple-httpd)
