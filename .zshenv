@@ -20,10 +20,14 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+# export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 
 # Disable files
 
 export LESSHISTFILE=-
 
 . "$XDG_DATA_HOME/cargo/env"
+
+export LD_PRELOAD=/lib64/libfreetype.so
