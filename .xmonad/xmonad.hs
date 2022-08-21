@@ -188,7 +188,7 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. altMask,   xK_p    ), spawn "st -n pulsemixer pulsemixer")
 
     -- Launch boom
-    , ((modm .|. altMask,   xK_b    ), spawn "$HOME/programering/scripts/boom.py")
+    , ((modm .|. altMask,   xK_b    ), spawn "btmenu")
     
     -- Launch zat
     , ((modm,               xK_z    ), spawn "$HOME/programering/scripts/zat/zat.sh")
