@@ -2,6 +2,7 @@
       user-mail-address "haavard.syslak@gmail.com")
 (set-frame-parameter (selected-frame) 'alpha '(98 . 94))
 (add-to-list 'default-frame-alist '(alpha . (98 . 94)))
+(add-to-list 'load-path "/home/syslak/.local/bin")
 
 (setq doom-font (font-spec :family "Liberation Mono" :size 13))
       ;(doom-variable-pitch-font (font-spec :family "monospace" :size 13)))
@@ -48,12 +49,22 @@
 (setq display-line-numbers-type `relative
       shell-file-name "/usr/bin/zsh")
 
+(setq x-select-enable-clipboard nil)
+; (define-key evil-mode-map "y" "\S-2 y")
+;(define-key evil-mode-map (kbd "S-2 "))
+
+; (map! :leader
+      ; :desc "Yank from / to clipboard"
+     ;
+
+(setq! lsp-clients-python-command "/home/syslak/.local/bin/pylsp")
+(setq! lsp-pylsp-server-command "/home/syslak/.local/bin/pylsp")
 (after! lsp-mode
         (setq lsp-enable-symbol-highlighting nil)
         (setq lsp-completion-enable-additional-text-edit nil)
         ;;(setq lsp-pyls-disable-warnings t)
         (setq lsp-pylsp-plugins-jedi-signature-help-enabled nil)
-        (setq lsp-pylsp-plugins-yapf-enabled t)
+;        (setq lsp-pylsp-plugins-yapf-enabled t)
         (setq lsp-pylsp-plugins-autopep8-enabled nil)
         (setq lsp-pylsp-plugins-pycodestyle-enabled nil)
         (setq lsp-pylsp-plugins-pycodestyle-max-line-length 150)
@@ -61,6 +72,7 @@
         (setq lsp-pylsp-plugins-docstyle-max-line-length 150)
         (setq lsp-signature-render-documentation nil)
         (setq lsp-pylsp-plugins-pydocstyle-enabled nil)
+        (setq lsp-pylsp-plugins-flake8-ignore "E302")
         )
 (after! lsp-ui
   (setq lsp-ui-doc-position 'bottom)

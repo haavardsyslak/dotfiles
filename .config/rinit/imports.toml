@@ -46,7 +46,7 @@ Thumbs.db
 """
 
 [tex]
-ele_setup = ''' %% Circuit tikz setup
+circuit_tikz = ''' %% Circuit tikz setup
 \usepackage[RPvoltages]{circuitikz}
 \usepackage{MnSymbol}'''
 
@@ -84,6 +84,7 @@ flow_chart = '''%% tikz
 \tikzstyle{arrow} = [thick,->,>=stealth]
 '''
 
+
 [c]
 HEADC = '#include "$HEADDER_INC$.h"'
 
@@ -113,7 +114,7 @@ minted_latex = '''
 minted_latex_export = '''
 #+BEGIN_EXPORT latex
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
-\setminted[matlab]{
+\setminted[python]{
   bgcolor=bg,
   breaklines=true,
   mathescape,

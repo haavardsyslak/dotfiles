@@ -54,3 +54,4 @@
 (package! dap-mode)
 (package! jupyter)
 (package! simple-httpd)
+(package! lsp-pyright)
