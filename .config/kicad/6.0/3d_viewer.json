@@ -115,7 +115,7 @@
     "show_comments": true,
     "show_eco": true,
     "show_footprints_insert": true,
-    "show_footprints_normal": false,
+    "show_footprints_normal": true,
     "show_footprints_virtual": true,
     "show_silkscreen": true,
     "show_soldermask": true,
@@ -136,7 +136,7 @@
       "always_show_cursor": true,
       "fullscreen_cursor": false
     },
-    "display": 1,
+    "display": 0,
     "grid": {
       "axes_enabled": false,
       "fast_grid_1": 4,
@@ -176,11 +176,11 @@
     },
     "maximized": false,
     "mru_path": "",
-    "perspective": "layout2|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=802;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=InfoBar;caption=;state=131454;dir=1;layer=1;row=0;pos=0;prop=100000;bestw=20;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=1270;besth=446;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=34|dock_size(5,0,0)=381|",
-    "pos_x": 2843,
-    "pos_y": 446,
-    "size_x": 1296,
-    "size_y": 739,
+    "perspective": "layout2|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=802;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=InfoBar;caption=;state=131452;dir=1;layer=1;row=0;pos=0;prop=100000;bestw=20;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=1916;besth=1032;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=34|dock_size(5,0,0)=574|dock_size(1,1,0)=30|",
+    "pos_x": 1283,
+    "pos_y": 3,
+    "size_x": 1270,
+    "size_y": 1430,
     "zoom_factors": []
   }
 }

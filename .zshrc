@@ -16,7 +16,6 @@ alias config="git --git-dir=$HOME/syslak/dotfiles --work-tree=$HOME"
 alias ls="ls --color=auto"
 alias dls="ranger $HOME/extra/downloads"
 alias l="exa"
-alias vimrc="vim $HOME/.config/nvim/init.vim"
 #alias mat="wid=$(xdo id); xdo hide; matlab; xdo show $wid"
  
 
@@ -49,7 +48,7 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
-bindkey -v
+ bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
@@ -80,3 +79,5 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh

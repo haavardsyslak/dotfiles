@@ -54,7 +54,17 @@
   },
   "system": {
     "drill_file_history": [],
-    "file_history": [],
+    "file_history": [
+      "/home/syslak/programering/uc/gerber/uc-B_Cu.gbr",
+      "/home/syslak/programering/uc/gerber/uc-B_Mask.gbr",
+      "/home/syslak/programering/uc/gerber/uc-B_Paste.gbr",
+      "/home/syslak/programering/uc/gerber/uc-B_Silkscreen.gbr",
+      "/home/syslak/programering/uc/gerber/uc-Edge_Cuts.gbr",
+      "/home/syslak/programering/uc/gerber/uc-F_Cu.gbr",
+      "/home/syslak/programering/uc/gerber/uc-F_Mask.gbr",
+      "/home/syslak/programering/uc/gerber/uc-F_Paste.gbr",
+      "/home/syslak/programering/uc/gerber/uc-F_Silkscreen.gbr"
+    ],
     "first_run_shown": true,
     "job_file_history": [],
     "last_imperial_units": 0,
@@ -68,7 +78,7 @@
       "always_show_cursor": true,
       "fullscreen_cursor": false
     },
-    "display": 1,
+    "display": 0,
     "grid": {
       "axes_enabled": true,
       "fast_grid_1": 4,
@@ -107,10 +117,10 @@
       "user_grid_y": "10 mil"
     },
     "maximized": true,
-    "mru_path": "/home/syslak/programering/ktest/asdfasdf/",
-    "perspective": "layout2|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=623;besth=37;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=AuxToolbar;caption=;state=139644;dir=1;layer=4;row=0;pos=0;prop=100000;bestw=1131;besth=37;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=OptToolbar;caption=;state=139596;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=34;besth=579;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LayersManager;caption=Layers Manager;state=1532;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=180;besth=32;minw=180;minh=32;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=180;floath=32|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=381;besth=169;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=37|dock_size(1,4,0)=37|dock_size(3,6,0)=38|dock_size(4,3,0)=34|dock_size(2,3,0)=180|dock_size(5,0,0)=383|",
-    "pos_x": 0,
-    "pos_y": 0,
+    "mru_path": "/home/syslak/programering/uc/gerber",
+    "perspective": "layout2|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=618;besth=37;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=AuxToolbar;caption=;state=139644;dir=1;layer=4;row=0;pos=0;prop=100000;bestw=1106;besth=37;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=OptToolbar;caption=;state=139596;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=34;besth=579;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LayersManager;caption=Layers Manager;state=1532;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=186;besth=32;minw=186;minh=32;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=186;floath=32|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=380;besth=168;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=37|dock_size(1,4,0)=37|dock_size(3,6,0)=38|dock_size(4,3,0)=34|dock_size(2,3,0)=209|dock_size(5,0,0)=382|",
+    "pos_x": 640,
+    "pos_y": 360,
     "size_x": 1280,
     "size_y": 720,
     "zoom_factors": [

@@ -49,9 +49,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! evil-tutor)
+;; (package! evil-tutor)
 (package! org-bullets)
-(package! dap-mode)
-(package! jupyter)
-(package! simple-httpd)
+;; (package! dap-mode)
+;; (package! jupyter)
+;; (package! simple-httpd)
 (package! lsp-pyright)

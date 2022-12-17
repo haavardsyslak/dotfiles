@@ -34,12 +34,17 @@
         "path": "bom_csv_grouped_by_value.py"
       },
       {
-        "command": "\"/usr/bin/python3\" \"/usr/share/kicad/plugins/bom_csv_grouped_by_value_with_fp.py\" \"%I\" \"%O.csv\"",
+        "command": "\"/usr/bin/python3\" \"/usr/share/kicad/plugins/bom_csv_grouped_by_value_with_fp.py\" \"%I\" \"/home/syslak/programering/uc/bom.csv\"",
         "name": "bom_csv_grouped_by_value_with_fp",
         "path": "bom_csv_grouped_by_value_with_fp.py"
+      },
+      {
+        "command": "xsltproc -o \"/home/syslak/programering/uc/bom.csv\" \"/home/syslak/bom.xml\" \"%I\"",
+        "name": "bom",
+        "path": "/home/syslak/bom.xml"
       }
     ],
-    "selected_plugin": "bom_csv_grouped_by_value"
+    "selected_plugin": "bom"
   },
   "color_picker": {
     "default_tab": 0
@@ -76,9 +81,25 @@
     "text_offset_ratio": 0.08
   },
   "field_editor": {
-    "column_widths": {},
-    "fields_group_by": {},
-    "fields_show": {}
+    "column_widths": {
+      "Datasheet": 84,
+      "Footprint": 327,
+      "JLCPCB Part #": 199,
+      "JLC_part": 100,
+      "LCSC": 209
+    },
+    "fields_group_by": {
+      "MFR_part": false
+    },
+    "fields_show": {
+      "JLCPCB Part #": true,
+      "LCSC": true,
+      "LCSC PART #": false,
+      "MFR part": false,
+      "MFR. part": false,
+      "MFR_part": false,
+      "Reference": true
+    }
   },
   "find_replace": {
     "find_history": [],
@@ -97,7 +118,7 @@
     "drag_is_move": false
   },
   "lib_tree": {
-    "column_width": 360
+    "column_width": 362
   },
   "lib_view": {
     "cmp_list_width": 148,
@@ -162,10 +183,10 @@
     "thickness": 3
   },
   "simulator": {
-    "cursors_panel_height": 463,
-    "plot_panel_height": 818,
-    "plot_panel_width": 703,
-    "signal_panel_height": 427,
+    "cursors_panel_height": 482,
+    "plot_panel_height": 973,
+    "plot_panel_width": 913,
+    "signal_panel_height": 387,
     "white_background": false,
     "window": {
       "display": 0,
@@ -178,15 +199,18 @@
     }
   },
   "symbol_chooser": {
-    "height": 661,
+    "height": 823,
     "keep_symbol": false,
     "place_all_units": true,
-    "sash_pos_h": 1021,
-    "sash_pos_v": 464,
-    "width": 1510
+    "sash_pos_h": 993,
+    "sash_pos_v": 462,
+    "width": 1450
   },
   "system": {
     "file_history": [
+      "/home/syslak/programering/uc/uc.kicad_sch",
+      "/home/syslak/programering/uc/spice/vi_sim/vi_sim.kicad_sch",
+      "/home/syslak/programering/stm_uc/spice/spice.kicad_sch",
       "/home/syslak/programering/stm_uc/stm_uc.kicad_sch",
       "/home/syslak/programering/ktest/asasas/mau.kicad_sch",
       "/home/syslak/programering/ktest/asasas/asasas.kicad_sch",
@@ -207,12 +231,12 @@
       "always_show_cursor": true,
       "fullscreen_cursor": true
     },
-    "display": 0,
+    "display": 1,
     "grid": {
       "axes_enabled": false,
       "fast_grid_1": 1,
       "fast_grid_2": 2,
-      "last_size": 7,
+      "last_size": 2,
       "line_width": 1.0,
       "min_spacing": 10.0,
       "show": true,

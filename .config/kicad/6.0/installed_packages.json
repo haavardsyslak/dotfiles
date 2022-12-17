@@ -1,6 +1,52 @@
 {
     "packages": [
         {
+            "current_version": "1.2.0",
+            "install_timestamp": 1669210360,
+            "package": {
+                "author": {
+                    "contact": {
+                        "github": "https://github.com/bennymeg"
+                    },
+                    "name": "Benny Megidish"
+                },
+                "description": "JLC PCB fabrication toolkit",
+                "description_full": "Toolkit for automating PCB fabrication process with KiCad and JLC PCB. \n\n OPTIONS: \n• Include Component Part Number in Production Files \n Add an 'MPN' field with the LCSC component part number to the footprint component options.  \n\n• Ignore Footprint in Production Files \n Select 'Exclude from position files' or 'Exclude from BOM' in the footprint properties fabrication attributes in order to ignore the footprint from the relevant file.",
+                "identifier": "com.github.bennymeg.JLC-Plugin-for-KiCad",
+                "license": "Apache-2.0",
+                "maintainer": {
+                    "contact": {
+                        "github": "https://github.com/bennymeg"
+                    },
+                    "name": "Benny Megidish"
+                },
+                "name": "Fabrication Toolkit",
+                "resources": {
+                    "homepage": "https://github.com/bennymeg/JLC-Plugin-for-KiCad"
+                },
+                "tags": [
+                    "jlc",
+                    "production",
+                    "fabrication",
+                    "toolkit"
+                ],
+                "type": "plugin",
+                "versions": [
+                    {
+                        "download_sha256": "fa5e7656c6d73d7e6da3ef6454e7a178f4d41504f6a1eaab9cb17e3cee1797bf",
+                        "download_size": 11447,
+                        "download_url": "https://github.com/bennymeg/JLC-Plugin-for-KiCad/releases/download/1.2.0/JLC-Plugin-for-KiCad-1.2.0.zip",
+                        "install_size": 20218,
+                        "kicad_version": "6.00",
+                        "status": "stable",
+                        "version": "1.2.0"
+                    }
+                ]
+            },
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        },
+        {
             "current_version": "1.2",
             "install_timestamp": 1654272291,
             "package": {

@@ -88,46 +88,46 @@
 (after! company-mode
   (setq company-idle-delay 0.0))
 
-(map! :leader
-      :desc "Dap toggle breakpoint"
-      "q b" #'dap-breakpoint-toggle
-      :leader
-      :desc "Dap-start debugger"
-      "q s" #'dap-debug
-      :leader
-      :desc "Dap debug last"
-      "q q" #'dap-debug-last
-      :leader
-      :desc "Dap restart debugger"
-      "q r" #'dap-debug-restart)
+;; (map! :leader
+;;       :desc "Dap toggle breakpoint"
+;;       "q b" #'dap-breakpoint-toggle
+;;       :leader
+;;       :desc "Dap-start debugger"
+;;       "q s" #'dap-debug
+;;       :leader
+;;       :desc "Dap debug last"
+;;       "q q" #'dap-debug-last
+;;       :leader
+;;       :desc "Dap restart debugger"
+;;       "q r" #'dap-debug-restart)
 
-(use-package dap-mode
-  :commands dap-debug)
+;; (use-package dap-mode
+;;   :commands dap-debug)
 
-(require 'dap-python)
-(require 'dap-cpptools)
-(require 'dap-lldb)
-(require 'dap-gdb-lldb)
+;; ; (require 'dap-python)
+;; (require 'dap-cpptools)
+;; (require 'dap-lldb)
+;; (require 'dap-gdb-lldb)
 
-(after! python-mode
-  (dap-python-debugger 'debugpy))
+;; ;(after! python-mode
+;; ;  (dap-python-debugger 'debugpy))
 
-  (dap-register-debug-template
-   "Rust::LLDB Run Configuration"
-   (list :type "lldb"
-         :request "launch"
-         :name "LLDB::Run"
-	 :gdbpath "rust-lldb"
-         :target nil
-         :cwd nil))
+;;   (dap-register-debug-template
+;;    "Rust::LLDB Run Configuration"
+;;    (list :type "lldb"
+;;          :request "launch"
+;;          :name "LLDB::Run"
+;; 	 :gdbpath "rust-lldb"
+;;          :target nil
+;;          :cwd nil))
 
-(dap-register-debug-template "Rust::GDB Run Configuration"
-                             (list :type "gdb"
-                                   :request "launch"
-                                   :name "GDB::Run"
-                           :gdbpath "rust-gdb"
-                                   :target nil
-                                   :cwd nil))
+;; (dap-register-debug-template "Rust::GDB Run Configuration"
+;;                              (list :type "gdb"
+;;                                    :request "launch"
+;;                                    :name "GDB::Run"
+;;                            :gdbpath "rust-gdb"
+;;                                    :target nil
+;;                                    :cwd nil))
 ;(dap-register-debug-template
    ;"rinit::Run"
    ;(list :type "gdb"

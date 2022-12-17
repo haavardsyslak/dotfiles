@@ -133,4 +133,5 @@
   (lib (name "Transformer_THT")(type "KiCad")(uri "${KICAD6_FOOTPRINT_DIR}/Transformer_THT.pretty")(options "")(descr ""))
   (lib (name "RF_Antenna")(type "KiCad")(uri "${KICAD6_FOOTPRINT_DIR}/RF_Antenna.pretty")(options "")(descr ""))
   (lib (name "Sensor_Distance")(type "KiCad")(uri "${KICAD6_FOOTPRINT_DIR}/Sensor_Distance.pretty")(options "")(descr ""))
+  (lib (name "syslak")(type "KiCad")(uri "/home/syslak/.local/share/kicad/6.0/footprints/syslak.pretty")(options "")(descr ""))
 )

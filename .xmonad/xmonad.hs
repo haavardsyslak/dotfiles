@@ -71,7 +71,7 @@ import XMonad.Hooks.SetWMName
 -- certain contrib modules.
 --
 myTerminal :: [Char]
-myTerminal = "st"
+myTerminal = "alacritty"
 
 -- Whether focus follows the mouse pointer.
 -- myFocusFollowsMouse :: Bool
@@ -162,8 +162,8 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch Firefox
     , ((modm .|. altMask,   xK_f        ), spawn "firefox")
 
-    -- lauch brave
-    , ((modm,               xK_b        ), spawn "brave")
+    -- lauch browser
+    , ((modm,               xK_b        ), spawn "firefox")
     
     -- launch qutebrowser
     , ((modm,               xK_q        ), spawn "qutebrowser")

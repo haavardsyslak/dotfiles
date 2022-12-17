@@ -23,7 +23,7 @@
       "zin": 50.0,
       "zout": 50.0
     },
-    "type": 0
+    "type": 3
   },
   "board_class_units": 0,
   "color_code_tolerance": 0,
@@ -52,7 +52,7 @@
     "highlight_factor": 0.5,
     "select_factor": 0.75
   },
-  "last_page": 0,
+  "last_page": 1,
   "lib_tree": {
     "column_width": 360
   },
@@ -257,13 +257,13 @@
         "Frequency": 1.0,
         "H": 0.2,
         "H_t": 1e+20,
-        "L": 50.0,
+        "L": 0.0,
         "Rho": 1.72e-08,
         "Rough": 0.0,
-        "T": 0.035,
+        "T": 0.0,
         "TanD": 0.02,
-        "W": 0.2,
-        "Z0": 50.0,
+        "W": 0.0,
+        "Z0": 0.0,
         "mu Rel C": 1.0,
         "mu Rel S": 1.0
       }
@@ -431,10 +431,10 @@
     "maximized": false,
     "mru_path": "",
     "perspective": "layout2|",
-    "pos_x": 1220,
-    "pos_y": 390,
-    "size_x": 955,
-    "size_y": 837,
+    "pos_x": 1430,
+    "pos_y": 189,
+    "size_x": 1023,
+    "size_y": 898,
     "zoom_factors": []
   }
 }
