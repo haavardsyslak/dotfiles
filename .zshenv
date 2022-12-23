@@ -30,4 +30,5 @@ export LESSHISTFILE=-
 
 . "$XDG_DATA_HOME/cargo/env"
 
-#export LD_PRELOAD=/lib64/libfreetype.so
+export LD_PRELOAD=/lib64/libfreetype.so
+. "/home/syslak/.local/share/cargo/env"

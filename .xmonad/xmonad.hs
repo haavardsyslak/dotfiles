@@ -7,11 +7,15 @@ import XMonad.Actions.NoBorders
 import XMonad hiding ((|||))
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+import XMonad.Util.Hacks (windowedFullscreenFixEventHook, javaHack)
+import XMonad.Layout.Fullscreen
 
-import XMonad.Hooks.EwmhDesktops
+-- import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 -- import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, PP(..))
-import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageDocks -- (docks, manageDocks ToggleStructs)
+
+
 -- import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig--(additionalKeys, additionalKeysP, additionalMouseBindings)
 -- import System.IO
@@ -195,6 +199,8 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- close focused window
     , ((altMask,            xK_q     ), kill)
+
+    , ((modm .|. altMask,   xK_o    ), spawn "layout_selector")
     
 
     -----[ Movement ]-----
@@ -380,12 +386,12 @@ myLayout =  avoidStruts $ smartBorders $
 -- Window rules:
 
 -- Toglablow EwmhDesktops fullscreen event hook
-toggleableFullscreen :: IORef Bool -> Event -> X All
-toggleableFullscreen ref evt =
-    io (readIORef ref) >>= \isOn ->
-        if isOn
-            then XMonad.Hooks.EwmhDesktops.fullscreenEventHook evt
-            else return (All True)
+-- toggleableFullscreen :: IORef Bool -> Event -> XConfig
+-- toggleableFullscreen ref evt =
+--     io (readIORef ref) >>= \isOn ->
+--         if isOn
+--             then XMonad.Hooks.EwmhDesktops.ewmhFullscreen evt
+--             else return (All True)
 
 
 -- Execute arbitrary actions and WindowSet manipulations when managing
@@ -403,6 +409,7 @@ toggleableFullscreen ref evt =
 -- insertPosition Below Newer <+> manageSpawn <+>
 myManageHook :: ManageHook
 myManageHook = manageSpawn
+    <+> fullscreenManageHook
     <+> composeOne
     [  isFullscreen                  -?> doFullFloat
     ,  isDialog                     -?> (insertPosition Above Newer <+> doFloat)
@@ -472,13 +479,13 @@ main = do
     fullscreenRef <- newIORef True
     --xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrcDesktop" 
     --xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrcDesktop" 
-    xmonad $ ewmh def
+    xmonad $ docks $ fullscreenSupport $ def
         { modMask = mod4Mask
         , keys = myKeys fullscreenRef 
         , startupHook = myStartupHook
-        , manageHook =  myManageHook 
+        , manageHook =  myManageHook
         , layoutHook = refocusLastLayoutHook $ myLayout
-        , handleEventHook = ewmhDesktopsEventHook <+> myEventHook <+> toggleableFullscreen fullscreenRef <+> handleEventHook def <+> docksEventHook 
+        , handleEventHook = windowedFullscreenFixEventHook <+> myEventHook <+> fullscreenEventHook <+> handleEventHook def
         , workspaces = myWorkspaces
         --, logHook = dynamicLogWithPP myPP {
           --                                ppOutput = hPutStrLn xmproc
