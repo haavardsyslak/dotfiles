@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
   use("olimorris/onedarkpro.nvim")
+  use("cpea2506/one_monokai.nvim")
 
   use({
     'nvim-lualine/lualine.nvim',
@@ -45,8 +46,8 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+  use("ThePrimeagen/vim-be-good")
 
-
-
+  use("lervag/vimtex")
 
 end)
