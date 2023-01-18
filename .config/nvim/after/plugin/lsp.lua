@@ -3,7 +3,7 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'sumneko_lua',
+  "sumneko_lua", "clangd"
 })
 
 local cmp = require('cmp')
@@ -21,14 +21,23 @@ lsp.setup_nvim_cmp({
 })
 
 
+lsp.configure('sumneko_lua', {
+    settings = {
+        diagnostics = {
+            globals = { 'vim' }
+        }
+    }
+})
+
 
 lsp.setup()
 
 vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  update_in_insert = false,
-  underline = false,
-  severity_sort = false,
-  float = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    underline = false,
+    severity_sort = false,
+    float = true,
 })
+
