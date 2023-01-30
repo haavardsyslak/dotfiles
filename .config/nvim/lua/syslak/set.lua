@@ -13,5 +13,7 @@ vim.opt.termguicolors = true
 
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
+vim.opt.textwidth = 120
 
 vim.g.vimtex_view_method = "zathura"
+
