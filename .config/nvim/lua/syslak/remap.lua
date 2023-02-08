@@ -52,4 +52,5 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<Leader>ot", ":split<Cr><C-w>j:term<Cr>")
 
 
-
+-- Tabs
+--vim.keymap.set("n", "Alt+1" , ":tabnext 1<CR>", {noremap = true})
