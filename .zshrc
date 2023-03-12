@@ -16,6 +16,7 @@ alias config="git --git-dir=$HOME/syslak/dotfiles --work-tree=$HOME"
 alias ls="ls --color=auto"
 alias dls="ranger $HOME/extra/downloads"
 alias l="exa"
+alias cfg="$HOME/programering/scripts/cfg_finder.sh"
 #alias mat="wid=$(xdo id); xdo hide; matlab; xdo show $wid"
  
 
