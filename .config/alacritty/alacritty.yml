@@ -1,0 +1,48 @@
+env:
+    TERM: alacritty
+
+window:
+    dynamic_title: true
+    opacity: 0.96
+
+title: Alacritty
+
+class:
+    instance: Alacritty
+    general: Alacritty
+
+scrolling:
+    history: 10000
+
+    multiplier: 1
+
+font:
+    normal:
+        family: "monospace"
+    size: 9
+
+colors:
+    primary:
+        text: "#e3e3e3"
+        background: "#1c1f24"
+
+    normal:
+        black:      "#282828"
+        red:        "#cc241d"
+        green:      "#00ff00"
+        yellow:     "#70f050"
+        blue:       "#7070ff"
+        magenta:    "#b16286"
+        cyan:       "#a9a9a9"
+        white:      "#a89984"
+
+        # Bright colors
+        bright:
+            black:      "#928374"
+            red:        "#fb4934"
+            green:      "#b8bb26"
+            yellow:     "#e8ff00"
+            blue:       "#66bbff"
+            magenta:    "#ff3ef7"
+            cyan:       "#808080"
+            white:      "#ebdbb2"
