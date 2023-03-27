@@ -48,7 +48,7 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
- bindkey -v
+bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
