@@ -15,8 +15,8 @@ local mappings = {
     --{";s", "\\sum_{}^{(__)} (__)<Esc>F_la"},
     -- Sections
     {";s", "\\section{}<CR><CR>(__)<Esc>2k$i"},
-    {";ss", "\\subsection{}<CR<CR>>(__)<Esc>2k$i"},
-    {";sss", "\\subsubsection{}<CR<CR>>(__)<Esc>2k$i"},
+    {";ss", "\\subsection{}<CR><CR>(__)<Esc>2k$i"},
+    {";sss", "\\subsubsection{}<CR><CR>(__)<Esc>2k$i"},
     -- Text
     {";b", "\\textbf{}<Esc>i"},
     {";i", "\\textit{}<Esc>i"},
@@ -24,7 +24,7 @@ local mappings = {
     {";e", "\\emph{}<Esc>i"},
     -- Figures, tikz
     {";ff", "\\begin{figure}<CR>" ..
-    "\\centering<CR>\\includegrapics[width=\\textwidth]{(__)}<CR>" ..
+    "\\centering<CR>\\includegraphics[width=\\textwidth]{(__)}<CR>" ..
     "\\caption{(__)}<CR>\\label{fig:(__)}<CR>\\end{figure}<Esc>3kf=a"},
     {";tc", "\\begin{center}<CR>\\begin{circuitikz}[american, scale=1.3]" ..
     "<CR>\\draw<CR>;<CR>\\end{circuitikz}<CR>\\end{center}<Esc>kkO"},
@@ -36,6 +36,9 @@ local mappings = {
     {";gP", "\\Phi"},
     {";gt", "\\theta"},
     {";gT", "\\Theta"},
+    -- Itemize
+    {";it", "\\begin{itemize}<CR>\\item<CR>\\end{itemize}<Esc>k==A"},
+    {";n", "\\footnote{}<Esc>i"},
   },
   go = {
     {";p", "fmt.Println()<Esc>i"},
