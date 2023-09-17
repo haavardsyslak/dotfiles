@@ -6,6 +6,8 @@ lsp.ensure_installed({
   "clangd"
 })
 
+lsp.nvim_workspace()
+
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -28,6 +30,7 @@ lsp.configure('sumneko_lua', {
         }
     }
 })
+
 
 
 lsp.setup()

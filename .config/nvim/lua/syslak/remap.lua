@@ -54,3 +54,7 @@ vim.keymap.set("n", "<Leader>ot", ":split<Cr><C-w>j:term<Cr>")
 
 -- Tabs
 --vim.keymap.set("n", "Alt+1" , ":tabnext 1<CR>", {noremap = true})
+
+-- Pdf
+
+vim.keymap.set("n", "<leader>po", ":lua vim.schedule(function() pdf_open() end)<CR>", { noremap = true, silent = true })

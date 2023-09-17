@@ -52,5 +52,7 @@ return require('packer').startup(function(use)
 
     use("ixru/nvim-markdown")
 
+    use("JuliaEditorSupport/julia-vim")
+
 
 end)
