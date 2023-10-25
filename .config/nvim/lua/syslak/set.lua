@@ -18,3 +18,5 @@ vim.opt.textwidth = 120
 vim.g.vimtex_view_method = "zathura"
 
 vim.cmd("autocmd BufRead,BufNewFile *.h set filetype=c")
+
+

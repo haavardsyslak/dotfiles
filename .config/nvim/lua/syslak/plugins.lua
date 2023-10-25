@@ -1,70 +1,114 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  }
+end
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-
-    use {
-        'nvim-telescope/telescope.nvim',--, tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-
-    use("olimorris/onedarkpro.nvim")
-    use("cpea2506/one_monokai.nvim")
-    use("loctvl842/monokai-pro.nvim")
+vim.opt.rtp:prepend(lazypath)
 
 
+local plugins = {
+    "cpea2506/one_monokai.nvim",
+    {'nvim-telescope/telescope.nvim',--, tag = '0.1.0',
+    -- or                            , branch = '0.1.x',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make',
+                cond = function()
+                    return vim.fn.executable 'make' == 1
+                end,
+            },
+        },
+    },
+    {'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    build = ':TSUpdate'
+    },
 
-    use({
+    {'neovim/nvim-lspconfig',
+        dependencies = {
+        -- Automatically install LSPs to stdpath for neovim
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
+
+        -- Useful status updates for LSP
+        -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+        -- { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+
+        -- Additional lua configuration, makes nvim stuff amazing!
+        'folke/neodev.nvim',
+        },
+    },
+
+    {
+        -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            -- Snippet Engine & its associated nvim-cmp source
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+
+            -- Adds LSP completion capabilities
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/nvim-cmp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+
+
+            -- Adds a number of user-friendly snippets
+            'rafamadriz/friendly-snippets',
+        },
+    },
+
+    -- Useful plugin to show you pending keybinds.
+    {
+        'folke/which-key.nvim', opts = {}
+    },
+
+
+    'mbbill/undotree',
+
+    -- {'VonHeikemen/lsp-zero.nvim',
+    --     dependencies = {
+    --         -- LSP Support
+    --         {'neovim/nvim-lspconfig'},
+    --         {'williamboman/mason.nvim'},
+    --         {'williamboman/mason-lspconfig.nvim'},
+    --
+    --         -- Autocompletion
+    --         {'hrsh7th/nvim-cmp'},
+    --         {'hrsh7th/cmp-buffer'},
+    --         {'hrsh7th/cmp-path'},
+    --         {'saadparwaiz1/cmp_luasnip'},
+    --         {'hrsh7th/cmp-nvim-lsp'},
+    --         {'hrsh7th/cmp-nvim-lua'},
+    --
+    --         -- Snippets
+    --         {'L3MON4D3/LuaSnip'},
+    --         {'rafamadriz/friendly-snippets'},
+    --     }
+    -- },
+
+    {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    })
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    },
+    "lervag/vimtex",
+    "numToStr/Comment.nvim",
+}
 
-  -- use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+local opts = {}
 
-    -- use {
-    --     'nvim-treesitter/nvim-treesitter',
-    --     run = function()
-    --         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-    --         ts_update()
-    --     end,
-    -- }
-
-    use('mbbill/undotree')
-    use('tpope/vim-fugitive')
-
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        requires = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
-        }
-    }
-    use("ThePrimeagen/vim-be-good")
-
-    use("lervag/vimtex")
-
-    use("ixru/nvim-markdown")
-
-    use("JuliaEditorSupport/julia-vim")
+require("lazy").setup(plugins, opts)
 
 
-end)
