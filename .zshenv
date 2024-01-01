@@ -9,7 +9,7 @@ export GOPATH="$HOME/.local/go"
 export PATH="$PATH:$HOME/.local/bin:$HOME/.platformio/penv/bin"
 
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
@@ -30,5 +30,5 @@ export LESSHISTFILE=-
 
 . "$XDG_DATA_HOME/cargo/env"
 
-export LD_PRELOAD=/lib64/libfreetype.so
+# export LD_PRELOAD=/lib64/libfreetype.so
 . "/home/syslak/.local/share/cargo/env"

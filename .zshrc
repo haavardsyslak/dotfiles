@@ -12,7 +12,7 @@ alias gc="git commit"
 alias gp="git push"
 alias img="sxiv"
 alias neofetch="neofetch --ascii_colors 12 12"
-alias config="git --git-dir=$HOME/syslak/dotfiles --work-tree=$HOME"
+alias config="git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
 alias ls="ls --color=auto"
 alias dls="ranger $HOME/extra/downloads"
 alias l="exa"
@@ -77,8 +77,12 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
+
+source /etc/zsh_completion.d/fzf-key-bindings

@@ -1,5 +1,6 @@
 function Fargelegg(color)
-    color = color or "one_monokai"
+    -- color = color or "one_monokai"
+    color = color or "onedark"
 
     if color == "one_monokai" then
         require(color).setup({
@@ -8,6 +9,15 @@ function Fargelegg(color)
         })
     end
 
+    if color == "onenord" then
+        print("sdfsdf")
+        require(color).setup({
+            disable = {
+                background = true,
+                floating_background = true,
+            }
+        })
+    end
  --    require("monokai-pro").setup({
  --        transparent_background = true,
  --        backgrund_clear = {"telescope", "nvim_tree"},

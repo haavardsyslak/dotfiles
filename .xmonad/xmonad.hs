@@ -177,10 +177,10 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. altMask,   xK_d     ), spawnOn (myWorkspaces !! 3 ) "discord")
     
     -- emoji dmenu prompt
-    , ((modm .|. altMask,   xK_e    ), spawn "~/programering/scripts/dmenu/emoji.sh")
+    -- , ((modm .|. altMask,   xK_e    ), spawn "~/programering/scripts/dmenu/emoji.sh")
 
-    , ((altMask,            xK_i    ),  spawn "~/programering/scripts/square.sh")
-    , ((altMask,            xK_o    ),  spawn "~/programering/scripts/curly.sh")
+    --, ((altMask,            xK_i    ),  spawn "~/programering/scripts/square.sh")
+    -- , ((altMask,            xK_o    ),  spawn "~/programering/scripts/curly.sh")
 
     -- Launch dolphin
    -- , ((modm,               xK_d    ), spawn "dolphin")
@@ -189,13 +189,13 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_r    ), spawn "st ranger")
 
     --Launch Pulsemixer
-    , ((modm .|. altMask,   xK_p    ), spawn "st -n pulsemixer pulsemixer")
+    , ((modm .|. altMask,   xK_p    ), spawn "alacritty --class pulsemixer -e pulsemixer")
 
     -- Launch boom
     , ((modm .|. altMask,   xK_b    ), spawn "btmenu")
     
     -- Launch zat
-    , ((modm,               xK_z    ), spawn "$HOME/programering/scripts/zat/zat.sh")
+    , ((modm,               xK_z    ), spawn "$HOME/repos/scripts/zat/zat.sh")
 
     -- close focused window
     , ((altMask,            xK_q     ), kill)
@@ -466,8 +466,8 @@ myStartupHook = do
         --spawnOnce "setxkbmap -option caps:super"
         spawnOnce "xset r rate 300 50"
         spawnOnce "ckb-next &"
-        spawnOnce "$HOME/programering/scripts/killCKB.sh &"
-        spawnOnce "/home/syslak/programering/scripts/remap.sh &"
+        -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
+        spawnOnce "/home/syslak/repos/scripts/remap.sh &"
         --spawnOnce "xcape -e 'Super_L=Escape'"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

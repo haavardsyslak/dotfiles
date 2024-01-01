@@ -42,6 +42,12 @@ require('neodev').setup()
 require('mason').setup()
 require('mason-lspconfig').setup()
 
+vim.api.nvim_set_hl(0, '@lsp.type.function', {})
+-- Hide all semantic highlights
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+ vim.api.nvim_set_hl(0, group, {})
+end
+
 
 local servers = {
 }
@@ -101,8 +107,8 @@ vim.diagnostic.config({
     signs = true,
     update_in_insert = false,
     underline = false,
-    severity_sort = false,
-    float = true,
+    severity_sort = true,
+    float = false,
 })
 
 
