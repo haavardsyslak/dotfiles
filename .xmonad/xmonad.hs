@@ -71,6 +71,9 @@ import Data.Monoid
 -- Needed to fix matlab
 import XMonad.Hooks.SetWMName
 
+--import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.EwmhDesktops
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -468,6 +471,7 @@ myStartupHook = do
         spawnOnce "ckb-next &"
         spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         spawnOnce "/home/syslak/programering/scripts/remap.sh &"
+        spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144"
         --spawnOnce "xcape -e 'Super_L=Escape'"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -479,18 +483,17 @@ main = do
     fullscreenRef <- newIORef True
     --xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrcDesktop" 
     --xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrcDesktop" 
-    xmonad $ docks $ fullscreenSupport $ def
+    xmonad $ docks $ ewmhFullscreen $ ewmh $ def
         { modMask = mod4Mask
         , keys = myKeys fullscreenRef 
         , startupHook = myStartupHook
         , manageHook =  myManageHook
         , layoutHook = refocusLastLayoutHook $ myLayout
-        , handleEventHook = windowedFullscreenFixEventHook <+> myEventHook <+> fullscreenEventHook <+> handleEventHook def
+        , handleEventHook = windowedFullscreenFixEventHook <+> myEventHook <+> handleEventHook def
         , workspaces = myWorkspaces
         --, logHook = dynamicLogWithPP myPP {
-          --                                ppOutput = hPutStrLn xmproc
             --                              }
-        , logHook = refocusLastLogHook <+> workspaceHistoryHook <+> myLogHook <+>  dynamicLog --dynamicLogWithPP xmobarPP { 
+        , logHook = refocusLastLogHook <+> workspaceHistoryHook <+> myLogHook <+> dynamicLog --dynamicLogWithPP xmobarPP { 
             -- Change from dynamicLog to dynamicLogWithPP and uncomment inside {} to  bring back xmobar
 --              ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
             --, ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"  -- Current workspace in xmobar
@@ -571,3 +574,4 @@ help = unlines ["The default modifier key is 'super'. Keybindings:",
     "mod-button1  Set the window to floating mode and move by dragging",
     "mod-button2  Raise the window to the top of the stack",
     "mod-button3  Set the window to floating mode and resize by dragging"]
+
