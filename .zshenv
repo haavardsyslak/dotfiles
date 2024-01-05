@@ -6,8 +6,15 @@ export VISUAL="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 export GOPATH="$HOME/.local/go"
 #export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$PATH
+<<<<<<< HEAD
 export PATH=$PATH:/usr/local/go/bin:$HOME/.local/bin
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+=======
+export PATH="$PATH:$HOME/.local/bin:$HOME/.platformio/penv/bin"
+
+
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+>>>>>>> 862a124b0f92f9da55c656a1330e8e9b82b82ced
 
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
@@ -30,3 +37,4 @@ export LESSHISTFILE=-
 
 # export LD_PRELOAD=/lib64/libfreetype.so
 # . "/home/syslak/.local/share/cargo/env"
+. "/home/syslak/.local/share/cargo/env"

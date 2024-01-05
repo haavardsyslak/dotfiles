@@ -9,7 +9,7 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.termguicolors = true
+ -- vim.opt.termguicolors = true
 
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8

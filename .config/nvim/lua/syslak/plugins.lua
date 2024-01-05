@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     "cpea2506/one_monokai.nvim",
+    "Yazeed1s/oh-lucy.nvim",
     {'nvim-telescope/telescope.nvim',--, tag = '0.1.0',
     -- or                            , branch = '0.1.x',
         dependencies = {
@@ -105,6 +106,11 @@ local plugins = {
     },
     "lervag/vimtex",
     "numToStr/Comment.nvim",
+   "mfussenegger/nvim-dap",
+   {
+    "rcarriga/nvim-dap-ui", 
+    requires = { "mfussenegger/nvim-dap" },
+   },
 }
 
 local opts = {}
