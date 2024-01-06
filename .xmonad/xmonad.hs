@@ -463,17 +463,18 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook :: X ()
 myStartupHook = do
-        --spawnOnce "nitrogen --restore &"
+        -- spawnOnce "nitrogen --restore &"
         --spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence -b"
         --spawnOnce "/home/syslak/programering/scripts/setBrightness.sh 130"
-        --spawnOnce "setxkbmap -option caps:super"
-        spawnOnce "xset r rate 300 50"
-        spawnOnce "ckb-next &"
+        spawnOnce "setxkbmap -option caps:super &"
+        spawnOnce "xset r rate 300 50 &"
+        spawnOnce "ckb-next -b &"
         --spawnOnce "$HOME/programering/scripts/killCKB.sh &"
-        spawnOnce "/home/syslak/programering/scripts/remap.sh &"
-        spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144"
+        --spawnOnce "/home/syslak/programering/scripts/remap.sh &"
+        spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
+        spawnOnce "bluetoothct power on &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
-        spawnOnce "/home/syslak/repos/scripts/remap.sh &"
+        -- spawnOnce "/home/syslak/repos/scripts/remap.sh &"
         --spawnOnce "xcape -e 'Super_L=Escape'"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
