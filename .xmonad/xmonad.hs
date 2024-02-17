@@ -472,7 +472,7 @@ myStartupHook = do
         --spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         --spawnOnce "/home/syslak/programering/scripts/remap.sh &"
         spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
-        spawnOnce "bluetoothct power on &"
+        spawnOnce "bluetoothctl power on &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         -- spawnOnce "/home/syslak/repos/scripts/remap.sh &"
         --spawnOnce "xcape -e 'Super_L=Escape'"
