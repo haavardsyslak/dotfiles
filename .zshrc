@@ -3,6 +3,9 @@
 # If not running interactivleym, do nothinng
 [[ $- != *i* ]] && return
 
+
+set -o ignoreeof
+
 # Alias
 alias vim="nvim"
 alias py="python3"
@@ -18,6 +21,7 @@ alias dls="ranger $HOME/extra/downloads"
 alias l="exa"
 alias cfg="$HOME/programering/scripts/cfg_finder.sh"
 alias lock="dm-tool switch-to-greeter"
+alias reboot="systemctl reboot"
 #alias mat="wid=$(xdo id); xdo hide; matlab; xdo show $wid"
  
 
@@ -85,12 +89,22 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Syntax highlighting
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
+
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+#source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Syntax highlighting
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source /usr/share/fzf/key-bindings.zsh
 # source /usr/share/fzf/completion.zsh
 
-source /etc/zsh_completion.d/fzf-key-bindings
+# source /etc/zsh_completion.d/fzf-key-bindings

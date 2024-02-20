@@ -28,7 +28,8 @@ export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 
 export LESSHISTFILE=-
 
-. "$XDG_DATA_HOME/cargo/env"
+# . "$XDG_DATA_HOME/cargo/env"
 
 # export LD_PRELOAD=/lib64/libfreetype.so
+# . "/home/syslak/.local/share/cargo/env"
 . "/home/syslak/.local/share/cargo/env"
