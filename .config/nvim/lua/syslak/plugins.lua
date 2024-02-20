@@ -111,6 +111,10 @@ local plugins = {
     "rcarriga/nvim-dap-ui", 
     requires = { "mfussenegger/nvim-dap" },
    },
+   {
+    "epwalsh/obsidian.nvim",
+    version = "*"
+   }
 }
 
 local opts = {}

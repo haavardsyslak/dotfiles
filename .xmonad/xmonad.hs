@@ -358,7 +358,8 @@ mySpacing i = spacingRaw False (Border 0 0 0 0) True (Border i i i i) True
 -- mySpacing' i = spacingRaw True (Border 0 0 0 0) True (Border 0 0 0 0) True
 
 sjark = renamed [Replace "Tabs"] $
-         trackFloating (tabbed shrinkText myTabConfig)
+         --trackFloating (tabbed shrinkText myTabConfig)
+         X.L.FocusTracking.focusTracking (tabbed shrinkText myTabConfig)
 
 myLayout =  avoidStruts $ smartBorders $ 
       renamed [Replace "Tiled"] tiled
@@ -463,11 +464,14 @@ myStartupHook = do
         --spawnOnce "nitrogen --restore &"
         --spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence -b"
         --spawnOnce "/home/syslak/programering/scripts/setBrightness.sh 130"
-        --spawnOnce "setxkbmap -option caps:super"
-        spawnOnce "xset r rate 300 50"
+        spawnOnce "xinput set-prop 11 310 1 &"
+        spawnOnce "setxkbmap -option caps:super &"
+        spawnOnce "xset r rate 280 40 &"
         spawnOnce "ckb-next &"
+        spawnOnce "$HOME/repos/batstat/bin/batstat &"
+        spawnOnce "bluetoothctl power on &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
-        spawnOnce "/home/syslak/repos/scripts/remap.sh &"
+        --spawnOnce "/home/syslak/repos/scripts/remap.sh &"
         --spawnOnce "xcape -e 'Super_L=Escape'"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -516,8 +520,8 @@ main = do
         [ ("<XF86AudioPlay>", spawn "$HOME/programering/scripts/playPause.sh")
         , ("<XF86AudioNext>", spawn "playerctl next")
         , ("<XF86AudioPrev>", spawn "playerctl previous")
-        , ("<XF86MonBrightnessDown>", spawn "/home/syslak/programering/scripts/brightnessDown.sh")
-        , ("<XF86MonBrightnessUp>", spawn "/home/syslak/programering/scripts/brightnessUp.sh")
+        , ("<XF86MonBrightnessDown>", spawn "$HOME/repos/scripts/brightnessDown.sh")
+        , ("<XF86MonBrightnessUp>", spawn "$HOME/repos/scripts/brightnessUp.sh")
         , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 10%+")
         , ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 10%-")
         , ("<XF86AudioMute>", spawn "amixer -D pulse set Master 1+ toggle")

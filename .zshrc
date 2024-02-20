@@ -17,6 +17,7 @@ alias ls="ls --color=auto"
 alias dls="ranger $HOME/extra/downloads"
 alias l="exa"
 alias cfg="$HOME/programering/scripts/cfg_finder.sh"
+alias lock="dm-tool switch-to-greeter"
 #alias mat="wid=$(xdo id); xdo hide; matlab; xdo show $wid"
  
 
@@ -29,7 +30,14 @@ setopt PROMPT_SUBST
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}"$'\n'"$%b "
-PS1="%B%{$fg[red]%}%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}%{$reset_color%}"$'\n'"$%b %"
+
+if [[ -n "$TMUX" ]]; then
+    PS1="%B%{$fg[red]%}%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[cyan]%}%M %{$fg[magenta]%}%~%{$fg[red]%}%{$reset_color%}"$'\n'"$%b %"
+else
+    PS1="%B%{$fg[red]%}%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}%{$reset_color%}"$'\n'"$%b %"
+fi
+
+# PS1="%B%{$fg[red]%}%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}%{$reset_color%}"$'\n'"$%b %"
 #PROMPT='%9c%{%F{green}%}$(git_branch)%{%F{none}%} $ '
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
