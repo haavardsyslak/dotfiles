@@ -1,10 +1,16 @@
 function Fargelegg(color)
     color = color or "one_monokai"
-
     if color == "one_monokai" then
         require(color).setup({
             transparent = true,
             italics = true,
+        })
+    end
+
+    if color == "dracula" then
+        require("dracula").setup({
+            italic_comment = true, -- default false
+            transparent_bg = true, -- default false
         })
     end
 

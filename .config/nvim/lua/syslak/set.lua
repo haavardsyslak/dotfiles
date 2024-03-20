@@ -15,7 +15,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 vim.opt.textwidth = 120
 
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 1
 
 vim.g.vimtex_view_method = "zathura"
 

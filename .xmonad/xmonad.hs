@@ -42,25 +42,13 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 -- 1 import XMonad.Layout.Groups.Examples
 
--- UNCOMMENT when reenabeling the bar
--- !!BAR!!
--- import XMonad.Hooks.DynamicBars
-
 --- Layouts (Most are not in use)
 import XMonad.Layout.ResizableTile
---import XMonad.Layout.TwoPane
---import XMonad.Layout.BinarySpacePartition
---import XMonad.Layout.Dwindle
---import XMonad.Layout.ComboP
---import XMonad.Layout.SubLayouts
---import XMonad.Layout.WindowNavigation
---import XMonad.Layout.WindowNavigation
---import XMonad.Layout.BoringWindows
 import XMonad.Layout.LayoutModifier
 import XMonad.Hooks.WorkspaceHistory
 import XMonad.Layout.TrackFloating
---import XMonad.Layout.Simplest
--- 1 import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.FocusTracking
+
 import XMonad.Layout.Renamed
 import Data.IORef
 
@@ -362,7 +350,7 @@ mySpacing i = spacingRaw False (Border 0 0 0 0) True (Border i i i i) True
 
 sjark = renamed [Replace "Tabs"] $
          --trackFloating (tabbed shrinkText myTabConfig)
-         X.L.FocusTracking.focusTracking (tabbed shrinkText myTabConfig)
+         focusTracking (tabbed shrinkText myTabConfig)
 
 myLayout =  avoidStruts $ smartBorders $ 
       renamed [Replace "Tiled"] tiled

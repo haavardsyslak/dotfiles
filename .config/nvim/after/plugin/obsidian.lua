@@ -26,6 +26,10 @@ require("obsidian").setup({
     completion = {
         prepend_note_id = true,
     },
+    follow_url_func = function(url)
+        -- Open the URL in the default web browser.
+        vim.fn.jobstart({"xdg-open", url})  -- linux
+    end,
 
     -- Optional, customize how names/IDs for new notes are created.
     note_id_func = function(title)

@@ -9,14 +9,15 @@ lualine.setup {
   options = {
     -- Your other options here
     -- You can access the function directly in the statusline
+    theme = "one_monokai",
     section_separators = '', component_separators = '',
   },
   sections = {
     lualine_c = {'filename',
       {
-        function() 
+        function()
           if is_tmux() then
-            return '' 
+            return ''
           else
             return ''
           end

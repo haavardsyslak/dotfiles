@@ -18,8 +18,8 @@ scrolling:
 
 font:
     normal:
-        family: "monospace"
-    size: 9
+        family: "jetbrainsmono"
+    size: 7 
 
 colors:
     primary:
