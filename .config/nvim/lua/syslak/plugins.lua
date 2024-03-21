@@ -108,13 +108,19 @@ local plugins = {
     "numToStr/Comment.nvim",
    "mfussenegger/nvim-dap",
    {
-    "rcarriga/nvim-dap-ui", 
+    "rcarriga/nvim-dap-ui",
     requires = { "mfussenegger/nvim-dap" },
    },
    {
     "epwalsh/obsidian.nvim",
     version = "*"
-   }
+   },
+   'Mofiqul/dracula.nvim',
+   {
+       "ThePrimeagen/harpoon",
+       branch = "harpoon2",
+       dependencies = { "nvim-lua/plenary.nvim" }
+   },
 }
 
 local opts = {}

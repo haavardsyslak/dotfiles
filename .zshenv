@@ -1,12 +1,29 @@
 #source "$HOME/.cargo/env"
 
+alias vim="nvim"
+alias py="python3"
+alias jl="julia"
+alias gaa="git add --all"
+alias gc="git commit"
+alias gp="git push"
+alias img="sxiv"
+alias neofetch="neofetch --ascii_colors 12 12"
+alias config="git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
+alias ls="ls --color=auto"
+alias dls="ranger $HOME/extra/downloads"
+alias l="exa"
+alias cfg="$HOME/programering/scripts/cfg_finder.sh"
+alias lock="dm-tool switch-to-greeter"
+alias reboot="systemctl reboot"
+alias susp="systemctl suspend"
+
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="zathura"
 export VISUAL="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 export GOPATH="$HOME/.local/go"
 #export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$PATH
-export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin"
+export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin:$HOME/.local/go/bin"
 
 
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
