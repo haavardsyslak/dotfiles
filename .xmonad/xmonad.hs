@@ -27,6 +27,7 @@ import XMonad.Hooks.InsertPosition
 -- import XMonad.Layout.SimpleDecoration (shrinkText)
 -- import XMonad.Util.WorkspaceCompare
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.FocusTracking
 
 -- Order screens by physical location
 -- import XMonad.Actions.PhysicalScreens
@@ -362,7 +363,7 @@ mySpacing i = spacingRaw False (Border 0 0 0 0) True (Border i i i i) True
 
 sjark = renamed [Replace "Tabs"] $
          --trackFloating (tabbed shrinkText myTabConfig)
-         X.L.FocusTracking.focusTracking (tabbed shrinkText myTabConfig)
+         focusTracking (tabbed shrinkText myTabConfig)
 
 myLayout =  avoidStruts $ smartBorders $ 
       renamed [Replace "Tiled"] tiled
@@ -477,7 +478,7 @@ myStartupHook = do
         --spawnOnce "/home/syslak/repos/scripts/remap.sh &"
         --spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         --spawnOnce "/home/syslak/programering/scripts/remap.sh &"
-        -- spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
+        spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
         spawnOnce "bluetoothctl power on &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         -- spawnOnce "/home/syslak/repos/scripts/remap.sh &"
