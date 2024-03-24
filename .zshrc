@@ -15,6 +15,10 @@ function git_branch() {
      
 }
 
+export MAN_POSIXLY_CORRECT=1
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
 setopt PROMPT_SUBST
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors

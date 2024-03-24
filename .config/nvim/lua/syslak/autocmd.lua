@@ -10,8 +10,8 @@ local mappings = {
     {";al", "\\begin{aligned}<CR><CR>\\end{aligned}<Esc>ki", {"tex", "markdown"}},
     {";o", "\\overline{}(__)<Esc>F\\f{a", {"tex"}},
     {";d", "\\cdot", {"tex", "markdown"}},
-    {";in", "\\int_{}^{(__)} (__)<Esc>F_la", {"tex", "markdown"}},
-    {";su", "\\sum_{}^{(__)} (__)<Esc>F_la", {"tex", "markdown"}},
+    {";in", "\\int_{}^{(__)} (__)<Esc>F^i", {"tex", "markdown"}},
+    {";su", "\\sum_{}^{(__)} (__)<Esc>F^i", {"tex", "markdown"}},
     -- Sections
     {";s", "\\section{}<CR><CR>(__)<Esc>2k$i", {"tex"}},
     {";ss", "\\subsection{}<CR><CR>(__)<Esc>2k$i", {"tex"}},
