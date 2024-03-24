@@ -27,6 +27,7 @@ import XMonad.Hooks.InsertPosition
 -- import XMonad.Layout.SimpleDecoration (shrinkText)
 -- import XMonad.Util.WorkspaceCompare
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.FocusTracking
 
 -- Order screens by physical location
 -- import XMonad.Actions.PhysicalScreens
@@ -465,7 +466,7 @@ myStartupHook = do
         --spawnOnce "/home/syslak/repos/scripts/remap.sh &"
         --spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         --spawnOnce "/home/syslak/programering/scripts/remap.sh &"
-        -- spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
+        spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
         spawnOnce "bluetoothctl power on &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         -- spawnOnce "/home/syslak/repos/scripts/remap.sh &"

@@ -6,9 +6,7 @@ function pdf_open()
 
    if pdfpath ~= "" then
         vim.fn.system(string.format("zathura './%s' &disown", pdfpath))
-
     else
         vim.notify("file not found: " .. bufname .. ".pdf")
    end
-
 end

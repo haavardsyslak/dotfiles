@@ -1,5 +1,4 @@
 vim.g.mapleader =  " "
-vim.keymap.set("n", "<leader>pp", vim.cmd.Ex)
 
 
 -- Autoclose
@@ -16,9 +15,10 @@ vim.keymap.set("n", "<Leader>wl", "<C-w>l")
 vim.keymap.set("n", "<Leader>wh", "<C-w>h")
 vim.keymap.set("n", "<Leader>wj", "<C-w>j")
 vim.keymap.set("n", "<Leader>wk", "<C-w>k")
+vim.keymap.set("n", "<Leader>w=", "<C-w>=")
 
 
-vim.keymap.set("n", "<Leader>bd", ":bd!<CR>")
+vim.keymap.set("n", "<Leader>bd", ":bprevious <bar> bd#<CR>")
 vim.keymap.set("n", "<Leader>wd", ":close<CR>")
 vim.keymap.set("n", "<Leader>wv", ":vsplit ")
 vim.keymap.set("n", "<Leader>ws", ":split ")
@@ -51,10 +51,5 @@ vim.keymap.set("n", "<Right>", "<Nop>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<Leader>ot", ":split<Cr><C-w>j:term<Cr>")
 
+vim.keymap.set("n", "<leader>po", ":lua pdf_open()<CR>", { noremap = true, silent = true })
 
--- Tabs
---vim.keymap.set("n", "Alt+1" , ":tabnext 1<CR>", {noremap = true})
-
--- Pdf
-
-vim.keymap.set("n", "<leader>po", ":lua vim.schedule(function() pdf_open() end)<CR>", { noremap = true, silent = true })
