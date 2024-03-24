@@ -113,5 +113,5 @@ vim.diagnostic.config({
 
 
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, {desc = 'Floting diagnostics message'})
-vim.keymap.set('n', 'gp', vim.diagnostic.goto_prev, {desc = 'Goto prev diagnostics message'})
-vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, {desc = 'Goto prev diagnostics message'})
+vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, {desc = 'Goto prev diagnostics message'})
+vim.keymap.set('n', '[d', vim.diagnostic.goto_next, {desc = 'Goto prev diagnostics message'})
