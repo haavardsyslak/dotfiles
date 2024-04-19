@@ -35,6 +35,13 @@ local mappings = {
     {";gP", "\\Phi", {"tex", "markdown"}},
     {";gt", "\\theta", {"tex", "markdown"}},
     {";gT", "\\Theta", {"tex", "markdown"}},
+    {";ga", "\\alpha", {"tex", "markdown"}},
+    {";gA", "\\Alpha", {"tex", "markdown"}},
+    {";gb", "\\beta", {"tex", "markdown"}},
+    {";gB", "\\Beta", {"tex", "markdown"}},
+    {";gl", "\\lambda", {"tex", "markdown"}},
+    {";gL", "\\Lambda", {"tex", "markdown"}},
+
     -- Itemize
     {";it", "\\begin{itemize}<CR>\\item<CR>\\end{itemize}<Esc>k==A", {"tex"}},
     {";n", "\\footnote{}<Esc>i", {"tex"}},
