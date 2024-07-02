@@ -18,6 +18,7 @@ function git_branch() {
 export MAN_POSIXLY_CORRECT=1
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
+export XCURSOR_SIZE=16
 
 setopt PROMPT_SUBST
 # Enable colors and change prompt:
@@ -89,3 +90,12 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source /etc/zsh_completion.d/fzf-key-bindings
 source /etc/zsh_completion.d/fzf-key-bindings
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/syslak/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<

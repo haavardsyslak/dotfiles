@@ -71,12 +71,12 @@ mason_lspconfig.setup_handlers {
     end,
 }
 
-local cmp = require('cmp')
 
 local luasnip = require('luasnip')
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+local cmp = require('cmp')
 cmp.setup {
     snippet = {
         expand = function(args)

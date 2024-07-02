@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 [colors.normal]
 black = "#282828"
@@ -12,6 +13,7 @@ yellow = "#70f050"
 
 [colors.primary]
 background = "#1c1f24"
+# text = "#e3e3e3"
 
 [env]
 TERM = "alacritty"

@@ -22,10 +22,18 @@ require("obsidian").setup({
             opts = { noremap = false, expr = true, buffer = true },
         },
     },
-
-    completion = {
-        prepend_note_id = true,
-    },
+    wiki_link_func = function(opts)
+        if opts.id == nil then
+            return string.format("[[%s]]", opts.label)
+        elseif opts.label ~= opts.id then
+            return string.format("[[%s|%s]]", opts.id, opts.label)
+        else
+            return string.format("[[%s]]", opts.id)
+        end
+    end,
+    -- completion = {
+    --     prepend_note_id = true,
+    -- },
     follow_url_func = function(url)
         -- Open the URL in the default web browser.
         vim.fn.jobstart({"xdg-open", url})  -- linux

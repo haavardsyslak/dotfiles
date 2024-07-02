@@ -35,7 +35,6 @@ local plugins = {
     },
     build = ':TSUpdate'
     },
-
     {'neovim/nvim-lspconfig',
         dependencies = {
         -- Automatically install LSPs to stdpath for neovim
@@ -79,32 +78,20 @@ local plugins = {
 
     'mbbill/undotree',
 
-    -- {'VonHeikemen/lsp-zero.nvim',
-    --     dependencies = {
-    --         -- LSP Support
-    --         {'neovim/nvim-lspconfig'},
-    --         {'williamboman/mason.nvim'},
-    --         {'williamboman/mason-lspconfig.nvim'},
-    --
-    --         -- Autocompletion
-    --         {'hrsh7th/nvim-cmp'},
-    --         {'hrsh7th/cmp-buffer'},
-    --         {'hrsh7th/cmp-path'},
-    --         {'saadparwaiz1/cmp_luasnip'},
-    --         {'hrsh7th/cmp-nvim-lsp'},
-    --         {'hrsh7th/cmp-nvim-lua'},
-    --
-    --         -- Snippets
-    --         {'L3MON4D3/LuaSnip'},
-    --         {'rafamadriz/friendly-snippets'},
-    --     }
-    -- },
 
     {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     },
-    "lervag/vimtex",
+    {
+        "lervag/vimtex",
+        lazy = false,     -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+            vim.g.vimtex_view_method = "zathura"
+            -- VimTeX configuration goes here
+        end
+    },
     "numToStr/Comment.nvim",
    "mfussenegger/nvim-dap",
    {
@@ -121,6 +108,7 @@ local plugins = {
        branch = "harpoon2",
        dependencies = { "nvim-lua/plenary.nvim" }
    },
+   "jpalardy/vim-slime",
 }
 
 local opts = {}
