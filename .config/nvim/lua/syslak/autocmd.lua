@@ -11,7 +11,7 @@ local mappings = {
     {";o", "\\overline{}(__)<Esc>F\\f{a", {"tex"}},
     {";d", "\\cdot", {"tex", "markdown"}},
     {";in", "\\int_{}^{(__)} (__)<Esc>F^i", {"tex", "markdown"}},
-    {";su", "\\sum_{}^{(__)} (__)<Esc>F^i", {"tex", "markdown"}},
+    {";su", "\\sum_{}^{(__)} (__)<Esc>F^hi", {"tex", "markdown"}},
     -- Sections
     {";s", "\\section{}<CR><CR>(__)<Esc>2k$i", {"tex"}},
     {";ss", "\\subsection{}<CR><CR>(__)<Esc>2k$i", {"tex"}},

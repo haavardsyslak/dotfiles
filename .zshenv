@@ -15,6 +15,7 @@ alias l="ls -lh"
 alias cfg="$HOME/programering/scripts/cfg_finder.sh"
 alias lock="dm-tool switch-to-greeter"
 alias reboot="systemctl reboot"
+alias poweroff="systemctl poweroff"
 alias susp="systemctl suspend"
 alias bt="bluetoothctl"
 
@@ -51,3 +52,4 @@ export LESSHISTFILE=-
 # export LD_PRELOAD=/lib64/libfreetype.so
 # . "/home/syslak/.local/share/cargo/env"
 . "/home/syslak/.local/share/cargo/env"
+export PATH=$PATH:/home/syslak/blueye/cross-imx/scripts
