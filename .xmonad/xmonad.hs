@@ -178,7 +178,7 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
    -- , ((modm,               xK_d    ), spawn "dolphin")
 
     -- Launch range 
-    , ((modm,               xK_r    ), spawn "st ranger")
+    , ((modm,               xK_r    ), spawn "alacritty -e ranger")
 
     --Launch Pulsemixer
     , ((modm .|. altMask,   xK_p    ), spawn "alacritty --class pulsemixer -e pulsemixer")
@@ -191,9 +191,6 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- close focused window
     , ((altMask,            xK_q     ), kill)
-
-    , ((modm .|. altMask,   xK_o    ), spawn "layout_selector")
-    
 
     -----[ Movement ]-----
     -- Resize viewed windows to the correct size
@@ -229,12 +226,6 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. altMask,               xK_j), sendMessage MirrorShrink)
     , ((modm .|. altMask,               xK_k), sendMessage MirrorExpand)
 
-    -- Gaps
-    , ((modm,                          xK_plus), incWindowSpacing 3)
-    , ((modm,                          xK_minus), decWindowSpacing 3)
-    , ((modm,                          xK_g), toggleWindowSpacingEnabled)
-    , ((modm .|. altMask,              xK_x), withFocused toggleBorder)
-
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 
@@ -253,19 +244,10 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_space ), sendMessage NextLayout)
 
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-    , ((altMask,            xK_Tab   ), sendMessage $ JumpToLayout "Tabbed Simplest")
+    -- , ((altMask,            xK_Tab   ), sendMessage $ JumpToLayout "sjark")
 
     , ((modm,               xK_f), io (modifyIORef fullscreenRef not))
     -- add tabs stuff
---  , ((modm .|. controlMask, xK_h), sendMessage $ pullGroup L)
---  , ((modm .|. controlMask, xK_l), sendMessage $ pullGroup R)
---  , ((modm .|. controlMask, xK_k), sendMessage $ pullGroup U)
---  , ((modm .|. controlMask, xK_j), sendMessage $ pullGroup D)
---  , ((modm .|. controlMask, xK_m), withFocused (sendMessage . MergeAll))
---  , ((modm .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
-
---  , ((modm .|. controlMask, xK_period), onGroup W.focusUp')
---  , ((modm .|. controlMask, xK_comma), onGroup W.focusDown')
 
     ----- [ Quit/restart ]-----
     -- Quit xmonad
@@ -410,11 +392,9 @@ myManageHook = manageSpawn
     ,  title =?   "Save File"       -?> (insertPosition Above Newer <+> doFloat)
     ,  appName =? "spectacle"       -?> (insertPosition Above Newer <+> doFloat)
     ,  appName =? "pulsemixer"      -?> doRectFloat $ W.RationalRect 0.25 0.25 0.5 0.5 
-    ,  appName =? "calcurse"        -?> doRectFloat $ W.RationalRect 0.125 0.125 0.75 0.75 
-    --,  appName =? "pulsemixer"      -?> (insertPosition Above Newer <+> doCenterFloat)
     ,  className =? "Gimp"          -?> doFloat
     ,  className =? "mpv"           -?> doFloat
-    ,  className =? "tk"           -?> doFloat
+    ,  className =? "tk"            -?> doFloat
     , return True                   -?> insertPosition Below Newer
     ]
     
@@ -435,11 +415,6 @@ myEventHook = refocusLastWhen myPred
         myPred = refocusingIsActive <||> isFloat
 
 ------------------------------------------------------------------------
--- Status bars and logging
-
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
 myLogHook :: X ()
 myLogHook = return ()
 
@@ -453,24 +428,14 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook :: X ()
 myStartupHook = do
-        -- spawnOnce "nitrogen --restore &"
-        --spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence -b"
-        --spawnOnce "/home/syslak/programering/scripts/setBrightness.sh 130"
         spawnOnce "xinput set-prop 11 310 1 &"
         spawnOnce "setxkbmap -option caps:super &"
         spawnOnce "xset r rate 280 40 &"
         spawnOnce "ckb-next -b &"
         spawnOnce "$HOME/repos/batstat/bin/batstat &"
         spawnOnce "bluetoothctl power on &"
-        -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
-        --spawnOnce "/home/syslak/repos/scripts/remap.sh &"
-        --spawnOnce "$HOME/programering/scripts/killCKB.sh &"
-        --spawnOnce "/home/syslak/programering/scripts/remap.sh &"
         spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
         spawnOnce "bluetoothctl power on &"
-        -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
-        -- spawnOnce "/home/syslak/repos/scripts/remap.sh &"
-        --spawnOnce "xcape -e 'Super_L=Escape'"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
@@ -479,8 +444,6 @@ myStartupHook = do
 main :: IO()
 main = do
     fullscreenRef <- newIORef True
-    --xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrcDesktop" 
-    --xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobarrcDesktop" 
     xmonad $ docks $ ewmhFullscreen $ ewmh $ def
         { modMask = mod4Mask
         , keys = myKeys fullscreenRef 
@@ -489,24 +452,10 @@ main = do
         , layoutHook = refocusLastLayoutHook $ myLayout
         , handleEventHook = windowedFullscreenFixEventHook <+> myEventHook <+> handleEventHook def
         , workspaces = myWorkspaces
-        --, logHook = dynamicLogWithPP myPP {
-            --                              }
         , logHook = refocusLastLogHook <+> workspaceHistoryHook <+> myLogHook <+> dynamicLog --dynamicLogWithPP xmobarPP { 
-            -- Change from dynamicLog to dynamicLogWithPP and uncomment inside {} to  bring back xmobar
---              ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
-            --, ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"  -- Current workspace in xmobar
-            --, ppVisible = xmobarColor "#98be65" ""                 -- Visible but not current workspace
-            --, ppHidden = xmobarColor "#82AAFF" "" . wrap "<fn=5>*</fn>" ""   -- Hidden workspaces in xmobar
-            --, ppHiddenNoWindows = xmobarColor "#c792ea" ""         -- Hidden workspaces (no windows)
-            --, ppTitle = xmobarColor "#b3afc2" "" . shorten 60       -- Title of active window in xmobar
-            --, ppSep =  "<fc=#666666> <fn=2>|</fn> </fc>"           --  Separators in xmobar
-            --, ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"   -- Urgent workspace
-            --, ppExtras  = [windowCount]                           -- # of windows current workspace
-            --, ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-        --}
 
-                        >> historyHook
-                        >> setWMName "LG3D" -- This fixes matlab
+            >> historyHook
+            >> setWMName "LG3D" -- This fixes matlab
         , terminal = myTerminal 
         -- This is the color of the borders of the windows themselves.
         , normalBorderColor  = myNormalBorderColor

@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 [colors.normal]
 black = "#282828"
 blue = "#7070ff"
@@ -7,6 +9,7 @@ magenta = "#b16286"
 red = "#cc241d"
 white = "#a89984"
 yellow = "#70f050"
+
 
 [colors.primary]
 background = "#1c1f24"
@@ -27,4 +30,4 @@ multiplier = 1
 
 [window]
 dynamic_title = true
-opacity = 0.96
+# opacity = 0.96
