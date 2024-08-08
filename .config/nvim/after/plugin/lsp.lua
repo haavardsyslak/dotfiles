@@ -14,6 +14,7 @@ local on_attach = function(_, bufnr)
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+    nmap('gD', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
     nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -49,6 +50,8 @@ for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
 end
 
 
+local lspconfig = require'lspconfig'
+
 local servers = {
 }
 
@@ -57,18 +60,22 @@ local capabilites = vim.lsp.protocol.make_client_capabilities()
 local mason_lspconfig = require('mason-lspconfig')
 
 mason_lspconfig.setup({
-    ensure_installed = vim.tbl_keys(servers)
+  ensure_installed = vim.tbl_keys(servers)
 })
 
+lspconfig.clangd.setup{
+  capabilites = capabilites,
+  on_attach = on_attach,
+}
 mason_lspconfig.setup_handlers {
-    function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilites = capabilites,
-            on_attach = on_attach,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-        }
-    end,
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilites = capabilites,
+      on_attach = on_attach,
+      settings = servers[server_name],
+      filetypes = (servers[server_name] or {}).filetypes,
+    }
+  end,
 }
 
 
@@ -78,37 +85,37 @@ luasnip.config.setup {}
 
 local cmp = require('cmp')
 cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete {},
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
     },
-    mapping = cmp.mapping.preset.insert {
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-u>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-        },
-    },
-    sources = {
-        {name = 'nvim_lsp'},
-        {name = 'luasnip'},
-        {name = 'path'},
-        {name = 'buffer'},
-    }
+  },
+  sources = {
+    {name = 'nvim_lsp'},
+    {name = 'luasnip'},
+    {name = 'path'},
+    {name = 'buffer'},
+  }
 }
 
 vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-    underline = false,
-    severity_sort = true,
-    float = false,
+  virtual_text = false,
+  signs = true,
+  update_in_insert = false,
+  underline = false,
+  severity_sort = true,
+  float = false,
 })
 
 

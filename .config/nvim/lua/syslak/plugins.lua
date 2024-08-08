@@ -109,6 +109,7 @@ local plugins = {
        dependencies = { "nvim-lua/plenary.nvim" }
    },
    "jpalardy/vim-slime",
+   "https://gitlab.com/HiPhish/rainbow-delimiters.nvim"
 }
 
 local opts = {}

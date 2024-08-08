@@ -1,6 +1,5 @@
 -- autocommands
 
-
 vim.api.nvim_set_keymap("i", "<A-k>", "<Esc>/(__)<Enter>\"_c4l", {noremap = true})
 
 local mappings = {
@@ -71,3 +70,11 @@ end
 --     vim.api.nvim_command("autocmd Filetype " .. filetype .. " inoremap " .. map[1] .. " " .. map[2])
 --   end
 -- end
+--
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = { '*.cpp', '*.hpp' },
+  callback = function()
+    vim.cmd('silent! !clang-format -i %')
+  end,
+  desc = 'Run clang-format on save for .cpp and .hpp files in the specific directory',
+})
