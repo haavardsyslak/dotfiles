@@ -99,3 +99,7 @@ path=('/home/syslak/.juliaup/bin' $path)
 export PATH
 
 # <<< juliaup initialize <<<
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
