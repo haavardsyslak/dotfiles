@@ -16,7 +16,7 @@ background = "#1c1f24"
 TERM = "alacritty"
 
 [font]
-size = 9
+size = 7
 
 [font.normal]
 family = "jetbrainsmono"

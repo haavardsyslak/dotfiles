@@ -152,9 +152,6 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((altMask,            xK_space    ), spawn "dmenu_run")
 
-    -- launch DOOM EMACS
-    , ((modm,               xK_d        ), spawn "emacs")
-
     -- launch Firefox
     , ((modm .|. altMask,   xK_f        ), spawn "firefox")
 
@@ -164,9 +161,8 @@ myKeys fullscreenRef conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch qutebrowser
     , ((modm,               xK_q        ), spawn "qutebrowser")
 
-    -- launch spotify / Discord
-    , ((modm .|. altMask,   xK_s     ), spawnOn (myWorkspaces !! 3)  "spotify")
-    , ((modm .|. altMask,   xK_d     ), spawnOn (myWorkspaces !! 3 ) "discord")
+    , ((modm .|. altMask,   xK_s     ), spawnOn (myWorkspaces !! 3)  "slack")
+    -- , ((modm .|. altMask,   xK_d     ), spawnOn (myWorkspaces !! 3 ) "discord")
     
     -- emoji dmenu prompt
     -- , ((modm .|. altMask,   xK_e    ), spawn "~/programering/scripts/dmenu/emoji.sh")
@@ -456,17 +452,16 @@ myStartupHook = do
         -- spawnOnce "nitrogen --restore &"
         --spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence -b"
         --spawnOnce "/home/syslak/programering/scripts/setBrightness.sh 130"
-        spawnOnce "xinput set-prop 11 310 1 &"
+        spawnOnce "xinput set-prop 11 309 1 &"
         spawnOnce "setxkbmap -option caps:super &"
         spawnOnce "xset r rate 280 40 &"
         spawnOnce "ckb-next -b &"
         spawnOnce "$HOME/repos/batstat/bin/batstat &"
-        spawnOnce "bluetoothctl power on &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         --spawnOnce "/home/syslak/repos/scripts/remap.sh &"
         --spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         --spawnOnce "/home/syslak/programering/scripts/remap.sh &"
-        spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
+        --spawnOnce "xrandr --output DP-0 --mode 2560x1440 --rate 144 &"
         spawnOnce "bluetoothctl power on &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         -- spawnOnce "/home/syslak/repos/scripts/remap.sh &"

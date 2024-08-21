@@ -53,3 +53,4 @@ export LESSHISTFILE=-
 # . "/home/syslak/.local/share/cargo/env"
 . "/home/syslak/.local/share/cargo/env"
 export PATH=$PATH:/home/syslak/blueye/cross-imx/scripts
+export PATH=$PATH:/$HOME/.pyenv
