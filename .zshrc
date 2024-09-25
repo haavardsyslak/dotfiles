@@ -15,6 +15,9 @@ function git_branch() {
      
 }
 
+
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=$HOME/source/cross-imx/scripts:$PATH
 export MAN_POSIXLY_CORRECT=1
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
@@ -32,16 +35,18 @@ else
 fi
 
 # PS1="%B%{$fg[red]%}%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}%{$reset_color%}"$'\n'"$%b %"
-#PROMPT='%9c%{%F{green}%}$(git_branch)%{%F{none}%} $ '
+#PROMPT='%9c%{%F{green}%}$(gt_branch)%{%F{none}%} $ '
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 
 # History in cache directory:
 HISTSIZE=10000000
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
-setopt appendhistory
+# setopt appendhistory
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -87,9 +92,13 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-source /etc/zsh_completion.d/fzf-key-bindings
-source /etc/zsh_completion.d/fzf-key-bindings
+# source /etc/zsh_completion.d/fzf-key-bindings
+# source /etc/zsh_completion.d/fzf-key-bindings
+#
+source <(fzf --zsh)
 
 # >>> juliaup initialize >>>
 
@@ -103,3 +112,11 @@ export PATH
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+tmux has-session 2> /dev/null
+if [[ $? -ne 0 ]]; then
+  tmux new-session -s default
+fi
+
+
+

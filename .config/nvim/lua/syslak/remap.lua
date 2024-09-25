@@ -51,5 +51,9 @@ vim.keymap.set("n", "<Right>", "<Nop>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<Leader>ot", ":split<Cr><C-w>j:term<Cr>")
 
-vim.keymap.set("n", "<leader>po", ":lua pdf_open()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>op", ":lua pdf_open()<CR>", { noremap = true, silent = true })
+
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Floting diagnostics message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, { desc = 'Goto prev diagnostics message' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { desc = 'Goto prev diagnostics message' })
 

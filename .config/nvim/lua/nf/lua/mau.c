@@ -1,6 +1,0 @@
-øalskdjflksajdf
-sadfølkjasdf
-asdælfkjas
-dåkfælkasjdf
-asdfb
-sadf

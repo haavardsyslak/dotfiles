@@ -19,6 +19,9 @@ alias poweroff="systemctl poweroff"
 alias susp="systemctl suspend"
 alias bt="bluetoothctl"
 
+# Blueye aliases
+alias dssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.1.101"
+
 export EDITOR="nvim"
 export TERMINAL="zathura"
 export VISUAL="nvim"
@@ -52,5 +55,5 @@ export LESSHISTFILE=-
 # export LD_PRELOAD=/lib64/libfreetype.so
 # . "/home/syslak/.local/share/cargo/env"
 . "/home/syslak/.local/share/cargo/env"
-export PATH=$PATH:/home/syslak/blueye/cross-imx/scripts
 export PATH=$PATH:/$HOME/.pyenv
+export PATH="$PATH:$HOME/source/cross-imx/scripts"
