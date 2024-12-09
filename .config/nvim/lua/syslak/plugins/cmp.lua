@@ -9,9 +9,9 @@ return {
 
     -- Adds LSP completion capabilities
     'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-buffer',
+    -- 'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
+    'hrsh7th/nvim-cmp',
 
 
     -- Adds a number of user-friendly snippets
@@ -21,9 +21,9 @@ return {
   config = function()
     local lspkind = require("lspkind")
     lspkind.init {}
-    local luasnip = require('luasnip')
-    require('luasnip.loaders.from_vscode').lazy_load()
-    luasnip.config.setup {}
+    -- local luasnip = require('luasnip')
+    -- require('luasnip.loaders.from_vscode').lazy_load()
+    -- luasnip.config.setup {}
 
     local cmp = require('cmp')
     cmp.setup {
@@ -32,6 +32,7 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       },
+
       mapping = cmp.mapping.preset.insert {
         ['<C-j>'] = cmp.mapping.select_next_item(),
         ['<C-k>'] = cmp.mapping.select_prev_item(),
@@ -51,7 +52,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
-        { name = 'buffer' },
+        -- { name = 'buffer' },
       },
       formatting = {
         format = lspkind.cmp_format({

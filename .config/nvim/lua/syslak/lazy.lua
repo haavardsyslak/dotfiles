@@ -24,7 +24,6 @@ vim.g.maplocalleader = " "
 -- Setup lazy.nvim
 require("lazy").setup({
     { import = "syslak.plugins" },
-
     {
         priority = 1000,
         "cpea2506/one_monokai.nvim",
@@ -36,6 +35,36 @@ require("lazy").setup({
             vim.cmd.colorscheme("one_monokai")
         end
     },
+    { "catppuccin/nvim",        name = "catppuccin", priority = 1000 },
+    { "rose-pine/neovim",       name = "rose-pine" },
+    {
+        "olimorris/onedarkpro.nvim",
+        priority = 1000, -- Ensure it loads first
+        opts = {
+            options = {
+                transparency = true,
+                terminal_colors = false,
+            },
+        },
+    },
+    -- {
+    --     "jghauser/papis.nvim",
+    --     dependencies = {
+    --         "kkharji/sqlite.lua",
+    --         "MunifTanjim/nui.nvim",
+    --         "pysan3/pathlib.nvim",
+    --         "nvim-neotest/nvim-nio",
+    --         -- if not already installed, you may also want:
+    --         -- "nvim-telescope/telescope.nvim",
+    --         -- "hrsh7th/nvim-cmp",
+    --
+    --     },
+    --     config = function()
+    --         require("papis").setup({
+    --             -- Your configuration goes here
+    --         })
+    --     end,
+    -- },
     {
         'folke/which-key.nvim',
         enter = "VimEnter",

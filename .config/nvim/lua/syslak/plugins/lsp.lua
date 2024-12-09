@@ -68,17 +68,17 @@ return {
         local lspconfig = require 'lspconfig'
 
         local servers = {
-            -- pylsp = {
-            --     pylsp = {
-            --         plugins = {
-            --             pycodestyle = {
-            --                 enabled = true,
-            --                 ignore = { 'W391' },
-            --                 maxLineLength = 100
-            --             },
-            --         },
-            --     },
-            -- },
+            pylsp = {
+                pylsp = {
+                    plugins = {
+                        pycodestyle = {
+                            enabled = true,
+                            ignore = { 'W391', 'W503'},
+                            maxLineLength = 100
+                        },
+                    },
+                },
+            },
         }
 
         local capabilites = vim.lsp.protocol.make_client_capabilities()

@@ -5,7 +5,7 @@ vim.api.nvim_set_keymap("i", "<A-k>", "<Esc>/(__)<Enter>\"_c4l", {noremap = true
 local mappings = {
     -- Equation stuff
     {";f", "\\frac{}{(__)} (__)<Esc>F\\f{a", {"tex", "markdown"}},
-    {";eq", "\\begin{equation}<CR><CR>\\end{equation}<CR>(__)<Esc>kki", {"tex", "markdown"}},
+    {";eq", "\\begin{equation}<CR><CR>\\end{equation}<Esc>ki", {"tex", "markdown"}},
     {";al", "\\begin{aligned}<CR><CR>\\end{aligned}<Esc>ki", {"tex", "markdown"}},
     {";o", "\\overline{}(__)<Esc>F\\f{a", {"tex"}},
     {";d", "\\cdot", {"tex", "markdown"}},

@@ -16,7 +16,7 @@ vim.opt.termguicolors = true
 
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
-vim.opt.textwidth = 100
+-- vim.opt.textwidth = 100
 
 vim.opt.pumheight = 10
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
@@ -35,3 +35,5 @@ vim.diagnostic.config({
 
 
 vim.cmd("autocmd BufRead,BufNewFile *.h set filetype=c")
+
+vim.cmd("filetype plugin indent on")
