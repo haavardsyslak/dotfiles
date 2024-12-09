@@ -16,7 +16,7 @@ vim.opt.termguicolors = true
 
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
-vim.opt.textwidth = 100
+vim.opt.textwidth = 99
 
 vim.opt.pumheight = 10
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
