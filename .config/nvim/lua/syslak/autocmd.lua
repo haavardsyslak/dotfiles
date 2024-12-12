@@ -24,6 +24,21 @@ local mappings = {
     {";ff", "\\begin{figure}<CR>" ..
     "\\centering<CR>\\includegraphics[width=\\textwidth]{(__)}<CR>" ..
     "\\caption{(__)}<CR>\\label{fig:(__)}<CR>\\end{figure}<Esc>3kf=a", {"tex"}},
+    {";sf", "\\begin{figure}[h!]<CR>\\centering<CR>" ..
+    "\\begin{subfigure}{0.45\\textwidth}<CR>" ..
+    "\\includegraphics[width=\\textwidth]{(__)}<CR>" ..
+    "\\caption{(__)}<CR>" ..
+    "\\label{fig:(__)}<CR>" ..
+    "\\end{subfigure}<CR>" ..
+    "\\hfill<CR>" ..
+    "\\begin{subfigure}{0.45\\textwidth}<CR>" ..
+    "\\includegraphics[width=\\textwidth]{(__)}<CR>" ..
+    "\\caption{(__)}<CR>" ..
+    "\\label{fig:(__)}<CR>" ..
+    "\\end{subfigure}<CR>" ..
+    "\\caption{(__)}<CR>" ..
+    "\\label{fig:(__)}<CR>" ..
+    "\\end{figure}<Esc>12kf=a", {"tex"}},
     {";tc", "\\begin{center}<CR>\\begin{circuitikz}[american, scale=1.3]" ..
     "<CR>\\draw<CR>;<CR>\\end{circuitikz}<CR>\\end{center}<Esc>kkO", {"tex"}},
     {";cb", "\\left\\{ \\right\\}<Esc>8hi", {"tex", "markdown"}},
@@ -48,6 +63,7 @@ local mappings = {
     -- {";p", "fmt.Println()<Esc>i"},
     -- {";mi", "if __name__ == \"__main__\":<CR>"},
     -- {";mf", "if __name__ == \"__main__\":<CR>main()<CR>"},
+    {";m", "\\begin{bmatrix}\\end{bmatrix}<Esc>Fehi", {"tex"}},
 }
 -- Set mappings for each filetype
 
