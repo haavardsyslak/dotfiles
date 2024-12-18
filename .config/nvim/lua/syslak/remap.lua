@@ -58,4 +58,5 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, { desc = 'Goto prev diagnost
 vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { desc = 'Goto prev diagnostics message' })
 
 vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('i', 'kj', '<Esc>')
 
