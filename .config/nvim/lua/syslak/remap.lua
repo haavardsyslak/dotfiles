@@ -2,13 +2,13 @@ vim.g.mapleader =  " "
 
 
 -- Autoclose
-vim.keymap.set("i", "'", "''<left>")
-vim.keymap.set("i", '"', '""<left>')
-vim.keymap.set("i", "(", "()<left>")
-vim.keymap.set("i", "[", "[]<left>")
-vim.keymap.set("i", "{", "{}<left>")
-vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O")
-vim.keymap.set("i", "{;<CR>", "{<CR>};<ESC>O")
+-- vim.keymap.set("i", "'", "''<left>")
+-- vim.keymap.set("i", '"', '""<left>')
+-- vim.keymap.set("i", "(", "()<left>")
+-- vim.keymap.set("i", "[", "[]<left>")
+-- vim.keymap.set("i", "{", "{}<left>")
+-- vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O")
+-- vim.keymap.set("i", "{;<CR>", "{<CR>};<ESC>O")
 
 -- Navigation
 vim.keymap.set("n", "<Leader>wl", "<C-w>l")
@@ -18,7 +18,6 @@ vim.keymap.set("n", "<Leader>wk", "<C-w>k")
 vim.keymap.set("n", "<Leader>w=", "<C-w>=")
 
 
-vim.keymap.set("n", "<Leader>bd", ":bprevious <bar> bd#<CR>")
 vim.keymap.set("n", "<Leader>wd", ":close<CR>")
 vim.keymap.set("n", "<Leader>wv", ":vsplit ")
 vim.keymap.set("n", "<Leader>ws", ":split ")
@@ -49,7 +48,7 @@ vim.keymap.set("n", "<Right>", "<Nop>")
 
 -- Terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-vim.keymap.set("n", "<Leader>ot", ":split<Cr><C-w>j:term<Cr>")
+-- vim.keymap.set("n", "<Leader>ot", ":split<Cr><C-w>j:term<Cr>")
 
 vim.keymap.set("n", "<leader>op", ":lua pdf_open()<CR>", { noremap = true, silent = true })
 
@@ -57,6 +56,9 @@ vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Floting diagnosti
 vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, { desc = 'Goto prev diagnostics message' })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_next, { desc = 'Goto prev diagnostics message' })
 
-vim.keymap.set('i', 'jk', '<Esc>')
-vim.keymap.set('i', 'kj', '<Esc>')
+
+require("syslak.better_bd")
+vim.keymap.set('n', '<leader>bd', ":Betterbd<CR>")
+
+vim.keymap.set("i", "<F1>", "<Esc>")
 

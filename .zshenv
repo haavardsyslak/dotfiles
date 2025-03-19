@@ -21,6 +21,7 @@ alias bt="bluetoothctl"
 
 # Blueye aliases
 alias dssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.1.101"
+alias dscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.1.101"
 
 export EDITOR="nvim"
 export TERMINAL="zathura"
@@ -57,3 +58,4 @@ export LESSHISTFILE=-
 . "/home/syslak/.local/share/cargo/env"
 export PATH=$PATH:/$HOME/.pyenv
 export PATH="$PATH:$HOME/source/cross-imx/scripts"
+export PATH=$PATH:/home/syslak/source/cross-imx/scripts

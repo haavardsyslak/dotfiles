@@ -32,21 +32,93 @@ require("lazy").setup({
                 italic = true,
                 transparent = true,
             })
-            vim.cmd.colorscheme("one_monokai")
+            -- vim.cmd.colorscheme("one_monokai")
         end
     },
-    { "catppuccin/nvim",        name = "catppuccin", priority = 1000 },
-    { "rose-pine/neovim",       name = "rose-pine" },
     {
-        "olimorris/onedarkpro.nvim",
-        priority = 1000, -- Ensure it loads first
-        opts = {
-            options = {
-                transparency = true,
-                terminal_colors = false,
-            },
-        },
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = true,
+        init = function()
+            require("gruvbox").setup({
+                transparent_mode = true
+            })
+            vim.cmd.colorscheme("gruvbox")
+        end
     },
+    {
+        "tjdevries/colorbuddy.nvim",
+    },
+    {
+        "Mofiqul/dracula.nvim",
+        opts = {
+            transparent_bg = true, -- default false
+        }
+    },
+    {
+        "epwalsh/pomo.nvim",
+        version = "*", -- Recommended, use latest release instead of latest commit
+        lazy = true,
+        cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
+        dependencies = {
+            -- Optional, but highly recommended if you want to use the "Default" timer
+            "rcarriga/nvim-notify",
+        },
+        opts = {
+            notifiers = {
+                -- The "Default" notifier uses 'vim.notify' and works best when you have 'nvim-notify' installed.
+                {
+                    name = "Default",
+                    opts = {
+                        -- With 'nvim-notify', when 'sticky = true' you'll have a live timer pop-up
+                        -- continuously displayed. If you only want a pop-up notification when the timer starts
+                        -- and finishes, set this to false.
+                        sticky = false,
+
+                        -- Configure the display icons:
+                        title_icon = "󱎫",
+                        text_icon = "󰄉",
+                        -- Replace the above with these if you don't have a patched font:
+                        -- title_icon = "⏳",
+                        -- text_icon = "⏱️",
+                    },
+                },
+
+                -- The "System" notifier sends a system notification when the timer is finished.
+                -- Available on MacOS and Windows natively and on Linux via the `libnotify-bin` package.
+                { name = "System" },
+
+                -- You can also define custom notifiers by providing an "init" function instead of a name.
+                -- See "Defining custom notifiers" below for an example 👇
+                -- { init = function(timer) ... end }
+            },
+        }
+    },
+    -- {
+    --     'comfysage/evergarden',
+    --     priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
+    --     opts = {
+    --         transparent_background = true,
+    --         variant = 'medium', -- 'hard'|'medium'|'soft'
+    --         overrides = {}, -- add custom overrides
+    --     }
+    -- },
+    -- { 'Yazeed1s/minimal.nvim', minimal_transparent_background = true},
+    -- { "Mofiqul/dracula.nvim", transparent_bg = true },
+    -- { "catppuccin/nvim",        name = "catppuccin", priority = 1000, transparent_background = true },
+    -- { "rose-pine/neovim",       name = "rose-pine" },
+    -- {
+    --     "olimorris/onedarkpro.nvim",
+    --     priority = 1000, -- Ensure it loads first
+    --     opts = {
+    --         options = {
+    --             transparency = true,
+    --             terminal_colors = false,
+    --         },
+    --     },
+    -- },
+    -- { 'echasnovski/mini.nvim', version = false },
+    --
     -- {
     --     "jghauser/papis.nvim",
     --     dependencies = {
@@ -79,7 +151,7 @@ require("lazy").setup({
         }
 
     },
-    "numToStr/Comment.nvim",
+    -- "numToStr/Comment.nvim",
     "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
     {
         -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins

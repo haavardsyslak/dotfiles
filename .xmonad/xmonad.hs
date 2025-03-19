@@ -427,10 +427,11 @@ myStartupHook = do
         -- spawnOnce "nitrogen --restore &"
         --spawnOnce "picom --experimental-backends --backend glx --xrender-sync-fence -b"
         --spawnOnce "/home/syslak/programering/scripts/setBrightness.sh 130"
-        spawnOnce "xinput set-prop 11 309 1 &"
+
+        spawnOnce "xinput set-prop 11 309 1"
         spawnOnce "setxkbmap -option caps:super &"
         spawnOnce "xset r rate 280 40 &"
-        spawnOnce "ckb-next -b &"
+        -- spawnOnce "ckb-next -b &"
         spawnOnce "$HOME/repos/batstat/bin/batstat &"
         -- spawnOnce "$HOME/programering/scripts/killCKB.sh &"
         --spawnOnce "/home/syslak/repos/scripts/remap.sh &"

@@ -100,14 +100,7 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #
 source <(fzf --zsh)
 
-# >>> juliaup initialize >>>
 
-# !! Contents within this block are managed by juliaup !!
-
-path=('/home/syslak/.juliaup/bin' $path)
-export PATH
-
-# <<< juliaup initialize <<<
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
