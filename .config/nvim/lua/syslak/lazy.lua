@@ -23,41 +23,40 @@ vim.g.maplocalleader = " "
 
 -- Setup lazy.nvim
 require("lazy").setup({
-    { import = "syslak.plugins" },
-    {
-        priority = 1000,
-        "cpea2506/one_monokai.nvim",
-        init = function()
-            require("one_monokai").setup({
-                italic = true,
-                transparent = true,
-            })
-            -- vim.cmd.colorscheme("one_monokai")
-        end
+    change_detection = {
+        notify = false,
     },
+    { import = "syslak.plugins" },
+    -- {
+    --     "cpea2506/one_monokai.nvim",
+    --     priority = 1000,
+    --     opts = {
+    --         italic = true,
+    --         transparent = true,
+    --     },
+    --     -- init = function()
+    --     --     require("one_monokai").setup({
+    --     --         italic = true,
+    --     --         transparent = true,
+    --     --     })
+    --         -- vim.cmd.colorscheme("one_monokai")
+    --     -- end
+    -- },
     {
         "ellisonleao/gruvbox.nvim",
         priority = 1000,
         config = true,
         init = function()
             require("gruvbox").setup({
-                transparent_mode = true
+                transparent_mode = true,
+                dim_inactive = false,
             })
             vim.cmd.colorscheme("gruvbox")
         end
     },
     {
-        "tjdevries/colorbuddy.nvim",
-    },
-    {
-        "Mofiqul/dracula.nvim",
-        opts = {
-            transparent_bg = true, -- default false
-        }
-    },
-    {
         "epwalsh/pomo.nvim",
-        version = "*", -- Recommended, use latest release instead of latest commit
+        version = "*",                 -- Recommended, use latest release instead of latest commit
         lazy = true,
         cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
         dependencies = {

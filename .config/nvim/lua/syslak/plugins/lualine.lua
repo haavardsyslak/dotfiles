@@ -13,7 +13,7 @@ return {
       options = {
         -- Your other options here
         -- You can access the function directly in the statusline
-        theme = "one_monokai",
+        theme = "gruvbox-material",
         section_separators = '', component_separators = '',
       },
       sections = {

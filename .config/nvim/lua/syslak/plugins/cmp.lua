@@ -9,7 +9,7 @@ return {
 
         -- Adds LSP completion capabilities
         'hrsh7th/cmp-nvim-lsp',
-        -- 'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/nvim-cmp',
 
@@ -52,7 +52,7 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'path' },
-                -- { name = 'buffer' },
+                { name = 'buffer' },
             },
             formatting = {
                 format = lspkind.cmp_format({
