@@ -1,1 +1,2 @@
-require("syslak")
+require("config.lazy")
+
