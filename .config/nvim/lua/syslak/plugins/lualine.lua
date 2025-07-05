@@ -17,7 +17,11 @@ return {
         section_separators = '', component_separators = '',
       },
       sections = {
-        lualine_c = { 'filename',
+        lualine_c = {
+          {
+            'filename',
+            path = 1,
+          },
           {
             function()
               if is_tmux() then

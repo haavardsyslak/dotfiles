@@ -86,3 +86,7 @@ vim.keymap.set("n", "<Leader>ot", function()
     vim.cmd.term()
 end)
 
+
+
+vim.keymap.set('n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-p>', ':bprev<CR>', { noremap = true, silent = true })
