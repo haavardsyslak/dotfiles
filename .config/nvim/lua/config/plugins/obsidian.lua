@@ -17,8 +17,15 @@ return {
 
 	},
 	config = function()
-		local home = os.getenv("HOME")
-		if vim.uv.fs_stat(home .. "/vault") == nil then
+		local home = ""
+		if vim.fn.has("wsl") == 1 then
+			home = "/mnt/c/Users/haava/Documents"
+		else
+			home = os.getenv("HOME")
+		end
+
+		local vault_dir = home .. "/vault"
+		if vim.uv.fs_stat(vault_dir) == nil then
 			return
 		end
 
@@ -26,7 +33,7 @@ return {
 			workspaces = {
 				{
 					name = "vault",
-					path = "~/vault",
+					path = vault_dir,
 				},
 			},
 
