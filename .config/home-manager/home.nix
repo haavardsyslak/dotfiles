@@ -1,13 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  # targets.genericLinux.enable = true;
-  nixGL.packages = import <nixgl> { inherit pkgs; };
-  nixGL.defaultWrapper = "mesa";
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "syslak";
-  home.homeDirectory = "/home/syslak";
+  home.username = "haavardsyslak";
+  home.homeDirectory = "/Users/haavardsyslak";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -16,7 +13,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -24,36 +21,20 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    
-    # Example for getting gui apps to work.
-    # (config.lib.nixGL.wrapOffload pkgs.kitty)
+      pkgs.neovim
+      pkgs.git
+	  pkgs.fd
+	  pkgs.ripgrep
+	  pkgs.starship
+	  pkgs.zsh-syntax-highlighting
+	  pkgs.zsh-autosuggestions
+	  pkgs.tmux
+	  pkgs.fzf
+	  pkgs.devcontainer
+	  pkgs.coreutils
+	  pkgs.lazygit
+	  pkgs.htop
 
-
-    # pkgs.texliveFull
-  pkgs.biber
-  (pkgs.texliveSmall.withPackages (ps: [
-    ps.algorithms
-    ps.fontspec
-    ps.latexmk
-    ps.gensymb
-    ps.comment
-    ps.algpseudocodex
-    ps.algorithmicx
-    ps.fifo-stack
-    ps.varwidth
-    ps.tabto-ltx
-    ps.totcount
-    ps.tikzmark
-    ps.placeins
-    ps.biblatex
-    ps.biblatex-ieee
-    ps.a4wide
-    ps.glossaries
-    ps.multirow
-  ]))
-    
-    # pkgs.alacritty
-    # pkgs.kitty
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -97,15 +78,12 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/syslak/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/haavardsyslak/etc/profile.d/hm-session-vars.sh
   #
-  # home.sessionVariables = {
-  #   # EDITOR = "emacs";
-  # };
-
-  home.sessionVariables.LOCALES_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
+  home.sessionVariables = {
+    # EDITOR = "emacs";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
 }
