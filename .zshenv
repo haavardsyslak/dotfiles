@@ -18,15 +18,15 @@ alias reboot="systemctl reboot"
 alias poweroff="systemctl poweroff"
 alias susp="systemctl suspend"
 alias bt="bluetoothctl"
+alias lazydot="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME lazygit"
 
 # Blueye aliases
 alias dssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.1.101"
 alias dscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.1.101"
 
 export EDITOR="nvim"
-export TERMINAL="zathura"
+# export TERMINAL="zathura"
 export VISUAL="nvim"
-export XDG_CONFIG_HOME="$HOME/.config"
 export GOPATH="$HOME/.local/go"
 #export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin:$HOME/.local/go/bin"
@@ -42,10 +42,6 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
-export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
-# export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
-export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 
 # Disable files
 
@@ -55,7 +51,7 @@ export LESSHISTFILE=-
 
 # export LD_PRELOAD=/lib64/libfreetype.so
 # . "/home/syslak/.local/share/cargo/env"
-. "/home/syslak/.local/share/cargo/env"
+# . "/home/syslak/.local/share/cargo/env"
 export PATH=$PATH:/$HOME/.pyenv
 export PATH="$PATH:$HOME/source/cross-imx/scripts"
-export PATH=$PATH:/home/syslak/source/cross-imx/scripts
+# export PATH=$PATH:/home/syslak/source/cross-imx/scripts

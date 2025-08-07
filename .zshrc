@@ -18,8 +18,15 @@ eval "$(starship init zsh)"
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Arch
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ "$(uname)" == "Darwin" ]]; then
+	source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	source $HOME/.nix-profile/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+source <(fzf --zsh)
 
 tmux has-session 2> /dev/null
 if [[ $? -ne 0 ]]; then
