@@ -19,7 +19,9 @@ return {
 	config = function()
 		local home = ""
 		if vim.fn.has("wsl") == 1 then
-			home = "/mnt/c/Users/haava/Documents"
+			-- if you use the windows location for vault
+			-- home = "/mnt/c/Users/haava/Documents"
+			home = os.getenv("HOME")
 		else
 			home = os.getenv("HOME")
 		end
@@ -102,6 +104,7 @@ return {
 		nmap("<leader>ov", ":ObsidianWorkspace<CR>", "Change obsidian workspace")
 		nmap("<leader>od", ":ObsidianToday<CR>", "Obsidian Today")
 		nmap("<leader>of", ":ObsidianQuickSwitch<CR>", "Obsidian Find File")
+		nmap("<leader>ot", ":ObsidianTomorrow<CR>", "Obsidian Tomorrow")
 	end
 }
 
