@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: test
-# uuid: ,a
-# key: ,a
-# condition: t
-# --
-\\frac{$1}{$2} $

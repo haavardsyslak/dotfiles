@@ -17,16 +17,14 @@ background = "#202329" # This one!
 # background = "#282c34"
 # text = "#e3e3e3"
 
-[env]
-TERM = "alacritty"
-
-
+# [env]
+# TERM = "alacritty"
 
 [font]
 size = 10
-[font.normal]
-    family = "Jetbrains Mono"
-    style = "Medium"
+# [font.normal]
+# 	family = "JetBrainsMono Nerd Font"
+#     style = "Medium"
 
 [scrolling]
 history = 10000

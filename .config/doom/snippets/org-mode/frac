@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-#+PROPERTY: :padline no
-# name: frac
-# key: ,f
-# condition: t
-# --
-\\frac{$1}{$2}$

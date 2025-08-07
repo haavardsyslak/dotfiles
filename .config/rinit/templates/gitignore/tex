@@ -1,4 +1,0 @@
-# gitignore for tex files 
-
-!import tex
-!import compressed
