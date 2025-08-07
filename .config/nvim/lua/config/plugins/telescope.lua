@@ -3,20 +3,20 @@ return {
 	dependencies = {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
-		"nvim-telescope/telescope-smart-history.nvim",
+		-- "nvim-telescope/telescope-smart-history.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
-		"kkharji/sqlite.lua",
+		-- "kkharji/sqlite.lua",
 	},
 	config = function()
-	local data = assert(vim.fn.stdpath "data") --[[@as string]]
-	path = vim.fs.joinpath(data, "telescope_history.sqlite3")
+	-- local data = assert(vim.fn.stdpath "data") --[[@as string]]
+	-- path = vim.fs.joinpath(data, "telescope_history.sqlite3")
 	extensions = {
 
 		fzf = {},
-		history = {
-			path = vim.fs.joinpath(data, "telescope_history.sqlite3"),
-			limit = 100,
-		},
+		-- history = {
+		-- 	path = vim.fs.joinpath(data, "telescope_history.sqlite3"),
+		-- 	limit = 100,
+		-- },
 		["ui-select"] = {
 			require("telescope.themes").get_dropdown {},
 		},
