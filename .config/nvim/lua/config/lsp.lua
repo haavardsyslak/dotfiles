@@ -1,4 +1,6 @@
-require('lspconfig') -- integrate lspconfig’s shared configs
+-- require('lspconfig') -- integrate lspconfig’s shared configs
+
+require('mason').setup()
 
 local config_dir = vim.fn.stdpath("config") .. "/lsp"
 local files = vim.fn.globpath(config_dir, "*.lua", false, true)
@@ -43,8 +45,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, "[W]orkspace [L]ist Folders")
 
 		-- Diagnostics
-		vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Floting diagnostics message' })
-		vim.keymap.set('n', ']d', vim.diagnostic.get_prev, { desc = 'Goto prev diagnostics message' })
-		vim.keymap.set('n', '[d', vim.diagnostic.get_next, { desc = 'Goto prev diagnostics message' })
+		map('n', 'gl', vim.diagnostic.open_float, 'Floting diagnostics message')
+		-- TODO: depreceated, but the default does not show the diagnostics when jumping to them
+		map('n', ']d', vim.diagnostic.goto_next,  'Goto prev diagnostics message')
+		map('n', '[d', vim.diagnostic.goto_prev, 'Goto prev diagnostics message')
 	end,
 })
