@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "haavardsyslak";
-  home.homeDirectory = "/Users/haavardsyslak";
+  home.username = "syslak";
+  home.homeDirectory = "/home/syslak";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -34,6 +34,14 @@
 	  pkgs.coreutils
 	  pkgs.lazygit
 	  pkgs.htop
+	  pkgs.which
+	  pkgs.gcc
+	  pkgs.unzip
+	  pkgs.docker
+	  pkgs.gemini-cli
+	  pkgs.less
+	  pkgs.bat
+	  pkgs.cloc
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

@@ -40,7 +40,7 @@ return {
 			},
 
 			dayly_notes = {
-				folder = "daily",
+				folder = "dailies",
 			},
 			ui = {
 				enable = false
