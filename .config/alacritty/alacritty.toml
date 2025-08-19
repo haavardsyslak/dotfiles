@@ -21,10 +21,10 @@ background = "#202329" # This one!
 # TERM = "alacritty"
 
 [font]
-size = 10
-# [font.normal]
-# 	family = "JetBrainsMono Nerd Font"
-#     style = "Medium"
+size = 8
+[font.normal]
+	family = "JetBrainsMono Nerd Font"
+    # style = "Medium"
 
 [scrolling]
 history = 10000
