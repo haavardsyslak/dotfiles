@@ -34,6 +34,9 @@
 	  pkgs.coreutils
 	  pkgs.lazygit
 	  pkgs.htop
+	  pkgs.gemini-cli
+	  pkgs.git-lfs
+	  
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
