@@ -20,11 +20,18 @@ background = "#202329" # This one!
 # [env]
 # TERM = "alacritty"
 
+# [font]
+# <<<<<<< HEAD
+# size = 10
+# [font.normal]
+# 	family = "JetBrainsMono Nerd Font"
+# #     style = "Medium"
+# =======
 [font]
-size = 10
+size = 8
 [font.normal]
 	family = "JetBrainsMono Nerd Font"
-#     style = "Medium"
+    # style = "Medium"
 
 [scrolling]
 history = 10000
