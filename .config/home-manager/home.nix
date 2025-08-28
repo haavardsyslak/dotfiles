@@ -34,6 +34,9 @@
 	  pkgs.coreutils
 	  pkgs.lazygit
 	  pkgs.htop
+	  pkgs.gemini-cli
+	  pkgs.git-lfs
+	  
 	  pkgs.which
 	  pkgs.gcc
 	  pkgs.unzip
