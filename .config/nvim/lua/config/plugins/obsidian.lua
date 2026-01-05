@@ -16,6 +16,21 @@ return {
     "nvim-lua/plenary.nvim",
 
   },
+
+  cond = function()
+    local home = ""
+    if vim.fn.has("wsl") == 1 then
+      -- if you use the windows location for vault
+      -- home = "/mnt/c/Users/haava/Documents"
+      home = os.getenv("HOME")
+    else
+      home = os.getenv("HOME")
+    end
+
+    local vault_dir = home .. "/vault"
+    return vim.uv.fs_stat(vault_dir) ~= nil
+  end,
+
   config = function()
     local home = ""
     if vim.fn.has("wsl") == 1 then
@@ -27,11 +42,8 @@ return {
     end
 
     local vault_dir = home .. "/vault"
-    if vim.uv.fs_stat(vault_dir) == nil then
-      return
-    end
-
     require("obsidian").setup({
+      legacy_commands = false,
       workspaces = {
         {
           name = "vault",
@@ -39,7 +51,7 @@ return {
         },
       },
 
-      dayly_notes = {
+      daily_notes = {
         folder = "dailies",
       },
       ui = {
@@ -99,11 +111,11 @@ return {
       })
     end
 
-    nmap("<leader>os", ":ObsidianSearch<CR>", "[O]bsidian[s]earch")
-    nmap("<leader>orn", ":ObsidianRename<CR>", "[O]bsidian[r]ename")
-    nmap("<leader>ov", ":ObsidianWorkspace<CR>", "Change obsidian workspace")
-    nmap("<leader>od", ":ObsidianToday<CR>", "Obsidian Today")
-    nmap("<leader>of", ":ObsidianQuickSwitch<CR>", "Obsidian Find File")
-    nmap("<leader>ot", ":ObsidianTomorrow<CR>", "Obsidian Tomorrow")
+    nmap("<leader>os", ":Obsidian search<CR>", "[O]bsidian[s]earch")
+    nmap("<leader>orn", ":Obsidian rename<CR>", "[O]bsidian[r]ename")
+    nmap("<leader>ov", ":Obsidian workspace<CR>", "Change obsidian workspace")
+    nmap("<leader>od", ":Obsidian today<CR>", "Obsidian Today")
+    nmap("<leader>of", ":Obsidian quick_switch<CR>", "Obsidian Find File")
+    nmap("<leader>ot", ":Obsidian tomorrow<CR>", "Obsidian Tomorrow")
   end
 }
