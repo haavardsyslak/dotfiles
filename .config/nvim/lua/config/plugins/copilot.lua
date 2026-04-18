@@ -9,6 +9,10 @@ return {
       },
       panel = { enabled = false },
     },
+    keys = {
+      { "<leader>tc", function() require('copilot.command').toggle() end,
+        desc = "[T]oggle [C]opilot" },
+    },
   },
 
   {
