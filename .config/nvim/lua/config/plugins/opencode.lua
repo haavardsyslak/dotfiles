@@ -15,7 +15,7 @@ return {
             win = {
               input = {
                 keys = {
-                  ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+                  ["<m-a>"] = { "opencode_send", mode = { "n", "i" } },
                 },
               },
             },
@@ -28,12 +28,12 @@ return {
 
       vim.o.autoread = true
 
-      vim.keymap.set({ "n", "x" }, "<leader>a", function() require("opencode").ask("@this: ", { submit = true }) end,
+      vim.keymap.set({ "n", "x" }, "<leader>m", function() require("opencode").ask("@this: ", { submit = true }) end,
         { desc = "Ask opencode…" })
-      vim.keymap.set({ "n", "x" }, "<leader>ax", function() require("opencode").select() end,
+      vim.keymap.set({ "n", "x" }, "<leader>mx", function() require("opencode").select() end,
         { desc = "Execute opencode action…" })
-      vim.keymap.set({ "n", "t" }, "<leader>a.", function() require("opencode").toggle() end,
-        { desc = "Toggle opencode" })
+      -- vim.keymap.set({ "n", "t" }, "<leader>m.", function() require("opencode").toggle() end,
+      --   { desc = "Toggle opencode" })
 
       vim.keymap.set({ "n", "x" }, "go", function() return require("opencode").operator("@this ") end,
         { desc = "Add range to opencode", expr = true })

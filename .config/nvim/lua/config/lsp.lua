@@ -12,25 +12,70 @@ for _, filepath in ipairs(vim.fn.globpath(config_dir, '*.lua', false, true)) do
 end
 vim.lsp.enable(servers)
 
--- clangd: choose host vs docker clangd per project root
+-- clangd: dispatch to a project-local devcontainer if one exists & is running,
+-- otherwise fall back to host clangd.
 local clangd_defaults = dofile(config_dir .. '/clangd.lua')
-local source_dir = vim.fn.expand('$HOME') .. '/source'
+
+local function strip_jsonc(s)
+  s = s:gsub('/%*.-%*/', '')
+  s = s:gsub('//[^\n]*', '')
+  return s
+end
+
+local function read_devcontainer(root)
+  local found = vim.fs.find('.devcontainer/devcontainer.json',
+    { upward = true, path = root, type = 'file' })[1]
+  if not found then return nil, nil end
+  local f = io.open(found, 'r')
+  if not f then return nil, nil end
+  local content = f:read('*a')
+  f:close()
+  local ok, cfg = pcall(vim.json.decode, strip_jsonc(content))
+  if not ok then return nil, nil end
+  return cfg, found
+end
+
+local function devcontainer_name(cfg)
+  local args = cfg.runArgs or {}
+  for i, arg in ipairs(args) do
+    local n = arg:match('^%-%-name=(.+)$')
+    if n then return n end
+    if arg == '--name' and args[i + 1] then return args[i + 1] end
+  end
+  return nil
+end
+
+local function devcontainer_workspace(cfg, host_ws)
+  if cfg.workspaceFolder then return cfg.workspaceFolder end
+  if cfg.workspaceMount then
+    local target = cfg.workspaceMount:match('target=([^,]+)')
+    if target then return target end
+  end
+  return '/workspaces/' .. vim.fs.basename(host_ws)
+end
+
+local function container_running(name)
+  local out = vim.fn.system(
+    string.format('docker ps --filter name=^%s$ --format {{.Names}}', name))
+  return out:match('^' .. vim.pesc(name)) ~= nil
+end
 
 local function clangd_cmd(root)
-  if root:sub(1, #source_dir) ~= source_dir then
-    return clangd_defaults.cmd
-  end
-  local running = vim.fn.system(
-    'docker ps --filter name=blunux-devcontainer --format {{.Names}}')
-  if not running:match('blunux%-devcontainer') then
-    vim.notify('[lsp] blunux-devcontainer not running, using host clangd',
+  local cfg, cfg_path = read_devcontainer(root)
+  if not cfg then return clangd_defaults.cmd end
+  local cname = devcontainer_name(cfg)
+  if not cname then return clangd_defaults.cmd end
+  local host_ws = vim.fs.dirname(vim.fs.dirname(cfg_path))
+  local container_ws = devcontainer_workspace(cfg, host_ws)
+  if not container_running(cname) then
+    vim.notify('[lsp] devcontainer ' .. cname .. ' not running, using host clangd',
       vim.log.levels.WARN)
     return clangd_defaults.cmd
   end
   return {
-    'docker', 'exec', '-i', 'blunux-devcontainer',
+    'docker', 'exec', '-i', cname,
     'clangd', '--background-index',
-    '--path-mappings=' .. source_dir .. '=/workspaces/source',
+    '--path-mappings=' .. host_ws .. '=' .. container_ws,
   }
 end
 
