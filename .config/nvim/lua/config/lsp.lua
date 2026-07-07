@@ -22,17 +22,27 @@ local function strip_jsonc(s)
   return s
 end
 
-local function read_devcontainer(root)
+-- Collect every .devcontainer/devcontainer.json from root up through its
+-- ancestors (closest first), not just the nearest one. A project can be
+-- nested under a parent dir with its own devcontainer (e.g. this repo's own
+-- .devcontainer/devcontainer.json vs. the one actually running the container
+-- one level up), and the nearest file isn't always the right one.
+local function read_devcontainers(root)
   local found = vim.fs.find('.devcontainer/devcontainer.json',
-    { upward = true, path = root, type = 'file' })[1]
-  if not found then return nil, nil end
-  local f = io.open(found, 'r')
-  if not f then return nil, nil end
-  local content = f:read('*a')
-  f:close()
-  local ok, cfg = pcall(vim.json.decode, strip_jsonc(content))
-  if not ok then return nil, nil end
-  return cfg, found
+    { upward = true, path = root, type = 'file', limit = math.huge })
+  local out = {}
+  for _, path in ipairs(found) do
+    local f = io.open(path, 'r')
+    if f then
+      local content = f:read('*a')
+      f:close()
+      local ok, cfg = pcall(vim.json.decode, strip_jsonc(content))
+      if ok then
+        table.insert(out, { cfg = cfg, path = path })
+      end
+    end
+  end
+  return out
 end
 
 local function devcontainer_name(cfg)
@@ -61,22 +71,34 @@ local function container_running(name)
 end
 
 local function clangd_cmd(root)
-  local cfg, cfg_path = read_devcontainer(root)
-  if not cfg then return clangd_defaults.cmd end
-  local cname = devcontainer_name(cfg)
-  if not cname then return clangd_defaults.cmd end
-  local host_ws = vim.fs.dirname(vim.fs.dirname(cfg_path))
-  local container_ws = devcontainer_workspace(cfg, host_ws)
-  if not container_running(cname) then
-    vim.notify('[lsp] devcontainer ' .. cname .. ' not running, using host clangd',
-      vim.log.levels.WARN)
-    return clangd_defaults.cmd
+  local candidates = read_devcontainers(root)
+  -- Prefer the ancestor config whose container is actually running; the
+  -- closest devcontainer.json may just be a VS Code image config that was
+  -- never started, shadowing the parent dir's config that is.
+  for _, c in ipairs(candidates) do
+    local cname = devcontainer_name(c.cfg)
+    if cname and container_running(cname) then
+      local host_ws = vim.fs.dirname(vim.fs.dirname(c.path))
+      local container_ws = devcontainer_workspace(c.cfg, host_ws)
+      -- root may be nested under host_ws (e.g. host_ws=.../source,
+      -- root=.../source/libblunux); map that same relative path into the
+      -- container to find this project's own build/compile_commands.json.
+      local container_root = container_ws .. root:sub(#host_ws + 1)
+      return {
+        'docker', 'exec', '-i', cname,
+        'clangd', '--background-index',
+        '--path-mappings=' .. host_ws .. '=' .. container_ws,
+        '--compile-commands-dir=' .. container_root .. '/build',
+      }
+    end
   end
-  return {
-    'docker', 'exec', '-i', cname,
-    'clangd', '--background-index',
-    '--path-mappings=' .. host_ws .. '=' .. container_ws,
-  }
+  if #candidates > 0 then
+    vim.notify('[lsp] no running devcontainer found under ' .. root .. ', using host clangd',
+      vim.log.levels.WARN)
+  end
+  local cmd = vim.deepcopy(clangd_defaults.cmd)
+  table.insert(cmd, '--compile-commands-dir=' .. root .. '/build')
+  return cmd
 end
 
 vim.api.nvim_create_autocmd('FileType', {
