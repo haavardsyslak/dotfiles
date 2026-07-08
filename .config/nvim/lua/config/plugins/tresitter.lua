@@ -5,14 +5,28 @@ return {
         build = ":TSUpdate",
         init = function()
             vim.api.nvim_create_autocmd("FileType", {
-                callback = function()
+                callback = function(args)
+                    -- orgmode.nvim does its own highlighting; treesitter here fights it
+                    if vim.bo[args.buf].filetype == "org" then
+                        return
+                    end
                     pcall(vim.treesitter.start)
                     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end,
             })
         end,
         config = function()
-            local ensure_installed = { "python", "rust", "cpp", "markdown", "markdown_inline" }
+            -- org dropped from upstream registry on the main branch; register manually
+            local parsers = require("nvim-treesitter.parsers")
+            parsers.org = {
+                install_info = {
+                    url = "https://github.com/milisims/tree-sitter-org",
+                    files = { "src/parser.c", "src/scanner.c" },
+                },
+                filetype = "org",
+            }
+
+            local ensure_installed = { "python", "rust", "cpp", "markdown", "markdown_inline", "org" }
             local installed = require("nvim-treesitter.config").get_installed()
             local to_install = vim.iter(ensure_installed)
                 :filter(function(p)
