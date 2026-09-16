@@ -130,9 +130,76 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'gR', builtin.lsp_references, '[G]oto [R]eferences')
     map('n', 'gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
     map('n', '<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
-    map('n', '<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
-    map('n', '<leader>ss', builtin.lsp_dynamic_workspace_symbols,
-      '[W]orkspace [S]ymbols')
+    map('n', '<leader>ds', function()
+      builtin.lsp_document_symbols {
+        fname_width = 60,
+        symbol_width = 60,
+        symbol_type_width = 12,
+      }
+    end, '[D]ocument [S]ymbols')
+    -- kind, then symbol name, then filename last (filename is least
+    -- useful for scanning, so it shouldn't eat the first column).
+    local function workspace_symbols_opts(repo_only)
+      local make_entry = require('telescope.make_entry')
+      local entry_display = require('telescope.pickers.entry_display')
+      local tele_utils = require('telescope.utils')
+      local kind_highlight = {
+        Class = 'TelescopeResultsClass',
+        Constant = 'TelescopeResultsConstant',
+        Field = 'TelescopeResultsField',
+        Function = 'TelescopeResultsFunction',
+        Method = 'TelescopeResultsMethod',
+        Property = 'TelescopeResultsOperator',
+        Struct = 'TelescopeResultsStruct',
+        Variable = 'TelescopeResultsVariable',
+      }
+
+      local opts = {
+        fname_width = 60,
+        symbol_width = 60,
+        symbol_type_width = 12,
+      }
+      local base_entry_maker = make_entry.gen_from_lsp_symbols(opts)
+      local displayer = entry_display.create {
+        separator = ' ',
+        items = {
+          { width = opts.symbol_width },
+          { width = opts.symbol_type_width },
+          { remaining = true },
+        },
+      }
+      local cwd = repo_only and vim.fn.fnamemodify(vim.loop.cwd(), ':p')
+
+      opts.entry_maker = function(item)
+        local entry = base_entry_maker(item)
+        if not entry then
+          return nil
+        end
+        if cwd then
+          local full = vim.fn.fnamemodify(entry.filename, ':p')
+          if full:sub(1, #cwd) ~= cwd then
+            return nil
+          end
+        end
+        entry.display = function(e)
+          local display_path = tele_utils.transform_path(opts, e.filename)
+          return displayer {
+            e.symbol_name,
+            { e.symbol_type:lower(), kind_highlight[e.symbol_type] },
+            display_path,
+          }
+        end
+        return entry
+      end
+      return opts
+    end
+
+    map('n', '<leader>ss', function()
+      builtin.lsp_dynamic_workspace_symbols(workspace_symbols_opts(false))
+    end, '[W]orkspace [S]ymbols')
+    map('n', '<leader>sS', function()
+      builtin.lsp_dynamic_workspace_symbols(workspace_symbols_opts(true))
+    end, '[W]orkspace [S]ymbols (repo only)')
     map('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
     map('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
     map('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')

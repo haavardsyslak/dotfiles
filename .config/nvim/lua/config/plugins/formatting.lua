@@ -10,6 +10,9 @@ return {
         rust = { "rustfmt", lsp_format = "fallback" },
 
         cpp = { "clang-format", lsp_format = "fallback" },
+
+        go = { "goimports", "gofmt" },
+
       },
     })
     vim.api.nvim_create_autocmd("BufWritePre", {

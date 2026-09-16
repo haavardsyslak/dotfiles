@@ -43,6 +43,17 @@ return {
 
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          path = {
+            opts = {
+              -- Pi edits /tmp/pi-editor-*/prompt.md, but Neovim inherits Pi's cwd.
+              -- Complete paths from project cwd instead of temporary buffer directory.
+              get_cwd = function(_)
+                return vim.fn.getcwd()
+              end,
+            },
+          },
+        },
       },
 
       fuzzy = { implementation = "prefer_rust_with_warning" }
