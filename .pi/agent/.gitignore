@@ -1,0 +1,11 @@
+auth.json
+models-store.json
+sessions/
+missions/
+npm/
+git/
+trust.json
+pi-debug.log
+skills/pi-skills/
+**/__pycache__/
+*.py[cod]

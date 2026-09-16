@@ -1,0 +1,59 @@
+{
+  "lastChangelogVersion": "0.85.1",
+  "theme": "dark",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "images": {
+    "blockImages": false
+  },
+  "doubleEscapeAction": "none",
+  "treeFilterMode": "default",
+  "hideThinkingBlock": false,
+  "packages": [
+    "npm:pi-effort",
+    "npm:pi-web-access",
+    "npm:pi-subagents",
+    "npm:pi-fzf"
+  ],
+  "defaultThinkingLevel": "high",
+  "subagents": {
+    "agentOverrides": {
+      "scout": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "low",
+        "defaultContext": "fresh"
+      },
+      "researcher": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "medium",
+        "defaultContext": "fresh"
+      },
+      "delegate": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "medium",
+        "defaultContext": "fresh"
+      },
+      "worker": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "high",
+        "defaultContext": "fresh"
+      },
+      "reviewer": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "high",
+        "defaultContext": "fresh"
+      },
+      "evidence-auditor": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "high",
+        "defaultContext": "fresh"
+      },
+      "oracle": {
+        "model": "inherit",
+        "thinking": "high",
+        "defaultContext": "fork"
+      }
+    }
+  },
+  "tuiMode": "regular"
+}

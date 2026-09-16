@@ -1,0 +1,12 @@
+{
+  "defaultPlacement": "overlay",
+  "commands": {
+    "file": {
+      "list": "fd --type f --hidden --exclude .git | rg -vi '\\.(png|jpe?g|gif|webp|bmp|tiff?|svg|ico|avif|heic|heif)$' | sed 's/^/@\"/; s/$/\"/'",
+      "action": "{{selected}} ",
+      "shortcut": "alt+o",
+      "hideHeader": false,
+      "multiSelect": true
+    }
+  }
+}
