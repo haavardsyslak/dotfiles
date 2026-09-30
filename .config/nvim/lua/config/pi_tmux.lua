@@ -101,15 +101,7 @@ function M.target()
     return cached_target
   end
 
-  -- fallback: next window of the current session
-  if self_pane then
-    local wins = {}
-    for _, p in ipairs(panes) do
-      if p.session == self_pane.session then wins[p.ref:match("^[^:]+:(%d+)")] = true end
-    end
-    if vim.tbl_count(wins) > 1 then return self_pane.session .. ":+" end
-  end
-
+  -- No guessing: an arbitrary pane may be a shell, where paste + Enter runs commands.
   notify("no Pi pane found; set vim.g.pi_tmux.target or use <leader>aw", vim.log.levels.WARN)
   return nil
 end

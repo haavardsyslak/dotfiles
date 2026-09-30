@@ -19,16 +19,10 @@ return {
 
         ['<C-L>'] = { 'select_and_accept' },
 
-        ['<C-j>'] = { 'select_prev', 'fallback_to_mappings' },
-        ['<C-k>'] = { 'select_next', 'fallback_to_mappings' },
-
         ['<Tab>'] = { 'snippet_forward', 'fallback' },
         ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
         ['<C-d>'] = { 'show_signature', 'hide_signature', 'fallback' },
-
-        -- Manual AI completion via Ollama (battery-friendly: no auto-trigger)
-        -- ['<A-y>'] = require('minuet').make_blink_map(),
       },
 
       signature = { enabled = true },
@@ -37,13 +31,20 @@ return {
 
       completion = {
         documentation = { auto_show = true },
-        -- Don't warm up minuet on every InsertEnter; fire only on <A-y>
-        trigger = { prefetch_on_insert = false },
       },
 
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = {
+          lua = { inherit_defaults = true, 'lazydev' },
+        },
         providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
           path = {
             opts = {
               -- Pi edits /tmp/pi-editor-*/prompt.md, but Neovim inherits Pi's cwd.
@@ -59,5 +60,4 @@ return {
       fuzzy = { implementation = "prefer_rust_with_warning" }
     }
   end,
-  opts_extend = { "sources.default" }
 }

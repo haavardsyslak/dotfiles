@@ -84,21 +84,24 @@ local function clangd_cmd(root)
       -- root=.../source/libblunux); map that same relative path into the
       -- container to find this project's own build/compile_commands.json.
       local container_root = container_ws .. root:sub(#host_ws + 1)
-      return {
+      local cmd = {
         'docker', 'exec', '-i', cname,
         'clangd', '--background-index',
         '--path-mappings=' .. host_ws .. '=' .. container_ws,
-        '--compile-commands-dir=' .. container_root .. '/build',
       }
+      -- The workspace is mounted, so check the host side of that build dir.
+      if vim.uv.fs_stat(root .. '/build/compile_commands.json') then
+        table.insert(cmd, '--compile-commands-dir=' .. container_root .. '/build')
+      end
+      return cmd
     end
   end
   if #candidates > 0 then
     vim.notify('[lsp] no running devcontainer found under ' .. root .. ', using host clangd',
       vim.log.levels.WARN)
   end
-  local cmd = vim.deepcopy(clangd_defaults.cmd)
-  table.insert(cmd, '--compile-commands-dir=' .. root .. '/build')
-  return cmd
+  -- No --compile-commands-dir: clangd itself searches parent dirs and their build/.
+  return clangd_defaults.cmd
 end
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -107,7 +110,18 @@ vim.api.nvim_create_autocmd('FileType', {
     local root = vim.fs.root(ev.buf,
       { 'compile_commands.json', '.clangd', 'CMakeLists.txt', '.git' })
     if not root then return end
-    vim.lsp.start(vim.tbl_extend('force', clangd_defaults, {
+    -- Reuse a running client for this root; only a new client needs clangd_cmd,
+    -- which shells out to docker.
+    local clients = vim.lsp.get_clients({ name = 'clangd' })
+    for _, c in ipairs(clients) do
+      if c.root_dir == root then
+        vim.lsp.buf_attach_client(ev.buf, c.id)
+        return
+      end
+    end
+    -- vim.lsp.config.clangd merges nvim-lspconfig's clangd config (on_attach
+    -- with :LspClangdSwitchSourceHeader, capabilities) with lsp/clangd.lua.
+    vim.lsp.start(vim.tbl_extend('force', vim.lsp.config.clangd, {
       name = 'clangd',
       cmd = clangd_cmd(root),
       root_dir = root,
@@ -125,11 +139,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     map('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     map('n', '<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    map('n', '<leader>cf', vim.lsp.buf.format, '[C]ode [F]ormat')
+    map('n', '<leader>cf', function()
+      require('conform').format({ bufnr = buf, lsp_format = 'fallback' })
+    end, '[C]ode [F]ormat')
     map('n', 'gd', builtin.lsp_definitions, '[G]oto [D]efinition')
     map('n', 'gR', builtin.lsp_references, '[G]oto [R]eferences')
     map('n', 'gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
     map('n', '<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
+    map('n', '<leader>ci', builtin.lsp_incoming_calls, '[C]alls [I]ncoming')
+    map('n', '<leader>co', builtin.lsp_outgoing_calls, '[C]alls [O]utgoing')
     map('n', '<leader>ds', function()
       builtin.lsp_document_symbols {
         fname_width = 60,
@@ -168,7 +186,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
           { remaining = true },
         },
       }
-      local cwd = repo_only and vim.fn.fnamemodify(vim.loop.cwd(), ':p')
+      local cwd = repo_only and vim.fn.fnamemodify(vim.uv.cwd(), ':p')
 
       opts.entry_maker = function(item)
         local entry = base_entry_maker(item)

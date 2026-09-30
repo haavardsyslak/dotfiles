@@ -1,11 +1,11 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
-  ft = { "markdown", "telekasten" },
+  ft = { "markdown" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
   },
   opts = {
-    file_types = { "markdown", "telekasten" },
+    file_types = { "markdown" },
     heading = {
       backgrounds = {
         "RenderMarkdownH1Bg",

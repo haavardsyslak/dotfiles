@@ -77,7 +77,7 @@ vim.api.nvim_create_user_command("CppLintProject", function()
 end, {})
 
 vim.api.nvim_create_user_command("CppLintBuf", function()
-  M.run_cpplint("cpplint" .. vim.fn.expand("%"))
+  M.run_cpplint("cpplint " .. vim.fn.shellescape(vim.fn.expand("%")))
 end, {})
 
 return M

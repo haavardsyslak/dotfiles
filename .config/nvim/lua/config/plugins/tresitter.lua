@@ -10,23 +10,16 @@ return {
                     if vim.bo[args.buf].filetype == "org" then
                         return
                     end
-                    pcall(vim.treesitter.start)
-                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    -- Only take over indent when a parser exists; else keep ftplugin indent.
+                    if pcall(vim.treesitter.start) then
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
                 end,
             })
         end,
         config = function()
-            -- org dropped from upstream registry on the main branch; register manually
-            local parsers = require("nvim-treesitter.parsers")
-            parsers.org = {
-                install_info = {
-                    url = "https://github.com/milisims/tree-sitter-org",
-                    files = { "src/parser.c", "src/scanner.c" },
-                },
-                filetype = "org",
-            }
-
-            local ensure_installed = { "python", "rust", "cpp", "markdown", "markdown_inline", "org" }
+            -- org is not listed: orgmode installs and uses its own org parser.
+            local ensure_installed = { "python", "rust", "cpp", "markdown", "markdown_inline" }
             local installed = require("nvim-treesitter.config").get_installed()
             local to_install = vim.iter(ensure_installed)
                 :filter(function(p)
@@ -64,25 +57,26 @@ return {
                 end, { desc = "Select " .. query })
             end
 
+            -- Classes use k ("klass") so ]c/[c stay native diff-hunk jumps.
             local next_start = {
                 ["]f"] = "@function.outer",
-                ["]c"] = "@class.outer",
+                ["]k"] = "@class.outer",
                 ["]o"] = "@conditional.outer",
                 ["]l"] = "@loop.outer",
             }
             local next_end = {
                 ["]F"] = "@function.outer",
-                ["]C"] = "@class.outer",
+                ["]K"] = "@class.outer",
             }
             local prev_start = {
                 ["[f"] = "@function.outer",
-                ["[c"] = "@class.outer",
+                ["[k"] = "@class.outer",
                 ["[o"] = "@conditional.outer",
                 ["[l"] = "@loop.outer",
             }
             local prev_end = {
                 ["[F"] = "@function.outer",
-                ["[C"] = "@class.outer",
+                ["[K"] = "@class.outer",
             }
             for lhs, query in pairs(next_start) do
                 vim.keymap.set({ "n", "x", "o" }, lhs, function()
